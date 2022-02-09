@@ -1,0 +1,5 @@
+./build
+./dist
+./sortedintersect.egg-info
+./.gitignore
+./.*
