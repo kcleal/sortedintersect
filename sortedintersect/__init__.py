@@ -1,2 +1,2 @@
-from sortedintersect import *
+from sortedintersect.intersect import *
 

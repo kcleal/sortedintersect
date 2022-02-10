@@ -12,6 +12,7 @@ cdef inline bint is_overlapping(int x1, int x2, int y1, int y2) nogil:
 
 
 cdef class ISet:
+    """A sorted interval set for searching with sorted query intervals / points"""
     cdef vector[int] starts
     cdef vector[int] ends
     cdef int last_r_start, last_r_end
@@ -19,7 +20,7 @@ cdef class ISet:
     cdef int current_r_start, current_r_end
     cdef int index
     cdef bint add_data
-    cdef bint started_ref, started_query
+    cdef bint started_ref
     cdef object data
     def __init__(self, with_data):
         if with_data:
@@ -28,80 +29,50 @@ cdef class ISet:
         else:
             self.add_data = False
             self.data = None
-
-        self.last_r_start = 0
-        self.last_r_end = 0
-        self.last_q_start = 0
-        self.last_q_end = 0
+        self.last_r_start = -2_147_483_648
+        self.last_q_start = -2_147_483_648
         self.current_r_start = 0
         self.current_r_end = 0
         self.index = 0
-        self.started_ref = False
-        self.started_query = False
 
     cpdef add(self, int start, int end, value=None):
-
-        assert end > start
-        if self.started_ref and start < self.last_r_start or end < self.last_r_end:
-            raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}-{self.last_r_end}')
-
-        if not self.started_ref:
-            self.last_q_start = start
-            self.last_q_end = end
-            self.started_ref = True
-
+        assert end >= start
+        if start < self.last_r_start:
+            raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
         self.starts.push_back(start)
         self.ends.push_back(end)
-
         self.last_r_start = start
-        self.last_r_end = end
-
         if self.add_data:
             self.data.append(value)
 
     cpdef add_from_iter(self, iterable):
-
         cdef int start, end
         for item in iterable:
             start = item[0]
             end = item[1]
-
-            assert end > start
-            if self.started_ref and start < self.last_r_start or end < self.last_r_end:
-                raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}-{self.last_r_end}')
-
-            if not self.started_ref:
-                self.last_q_start = start
-                self.last_q_end = end
-                self.started_ref = True
-
+            assert end >= start
+            if start < self.last_r_start:
+                raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
             self.starts.push_back(start)
             self.ends.push_back(end)
-
             self.last_r_start = start
-            self.last_r_end = end
-
             if self.add_data:
                 self.data.append(item[2])
 
     cpdef search_point(self, int pos):
 
-        if not self.started_ref:
-            if self.add_data:
-                return False
-            return False
-
         cdef uint64_t i = self.index
 
-        if not self.started_query:
-            self.current_r_start = self.starts[i]
-            self.current_r_end = self.ends[i]
+        if self.starts.size() == 0 or i >= self.starts.size():
+            return False
 
-        if self.started_query and pos < self.last_q_start:
-            raise ValueError(f'Position {pos} is not in sorted order, last query interval seen was {self.last_q_start}-{self.last_q_end}')
+        if pos < self.last_q_start:
+            raise ValueError(f'Position {pos} is not in sorted order, last query interval seen was {self.last_q_start}')
 
         cdef bint passed = False
-
+        self.current_r_start = self.starts[i]
+        self.current_r_end = self.ends[i]
+        self.last_q_start = pos
         if pos > self.current_r_end:
             i += 1
             while i < self.starts.size():
@@ -118,37 +89,26 @@ cdef class ISet:
         elif self.current_r_start <= pos <= self.current_r_end:
             passed = True
 
-        self.last_q_start = pos
-        self.last_q_end = pos
-        self.started_query = True
+        if passed:
+            if self.add_data:
+                return self.current_r_start, self.current_r_end, self.data[self.index]
+            return self.current_r_start, self.current_r_end
+        return False
 
-        if self.add_data:
-            if passed:
-                return self.data[self.index]
-            return False
-        else:
-            if passed:
-                return True
-            return False
 
     cpdef search_interval(self, int start, int end):
 
-        assert end > start
-        if not self.started_ref:
-            if self.add_data:
-                return False
+        cdef uint64_t i = self.index
+        if self.starts.size() == 0 or i >= self.starts.size():
             return False
 
-        if not self.started_query:
-            self.current_r_start = self.starts[self.index]
-            self.current_r_end = self.ends[self.index]
-
-        if self.started_query and start < self.last_q_start:
-            raise ValueError(f'Interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}-{self.last_q_end}')
+        if start < self.last_q_start:
+            raise ValueError(f'Interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}')
 
         cdef bint passed = False
-        cdef uint64_t i
-
+        self.last_q_start = start
+        self.current_r_start = self.starts[i]
+        self.current_r_end = self.ends[i]
         if start > self.current_r_end:
             i = self.index + 1
             while i < self.starts.size():
@@ -165,20 +125,13 @@ cdef class ISet:
         elif is_overlapping(start, end, self.current_r_start, self.current_r_end):
             passed = True
 
-        self.last_q_start = start
-        self.last_q_end = end
-        self.started_query = True
-
-        if self.add_data:
-            if passed:
-                return self.data[self.index]
-            return False
-        else:
-            if passed:
-                return True
-            return False
+        if passed:
+            if self.add_data:
+                return self.current_r_start, self.current_r_end, self.data[self.index]
+            return self.current_r_start, self.current_r_end
+        return False
 
 
 cpdef ISet IntervalSet(with_data):
-    """Returns an IntervalSet for searching with sorted query intervals / points"""
+    """Returns a python friendly IntervalSet for searching with sorted query intervals / points"""
     return ISet(with_data)

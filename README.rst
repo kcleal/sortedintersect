@@ -4,7 +4,7 @@ sorted-intersect
 
 Fast intersection of sorted intervals and sorted queries
 A common task in bioinformatics is to check if an interval or point overlaps a set of reference intervals.
-An interval tree is often used for this purpose for fast queries in O(log n) time. However, if both the
+An interval tree is often used for this purpose for queries in O(log n) time. However, if both the
 reference intervals and query intervals are sorted ahead of time, then query time can be reduced. For example,
 this situation arises when processing a sorted alignment file and checking against a sorted reference interval set.
 
@@ -25,7 +25,7 @@ Common usage is to check if a point overlaps a reference set:
 
 .. code-block:: python
 
-    from sortedintersect.intersect import IntervalSet
+    from sortedintersect import IntervalSet
 
     # intervals without data
     itv = IntervalSet(False)

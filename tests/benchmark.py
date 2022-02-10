@@ -29,7 +29,8 @@ def benchmark(n):
     t0 = time.time()
     v = 0
     for i in range(n):
-        v += int(itv.search_point(i))
+        if itv.search_point(i):
+            v += 1
     res.append({'library': 'sortedintersect', 'time (s)': time.time() - t0, 'v': v, "n": n})
 
     # quicksect
@@ -44,7 +45,7 @@ def benchmark(n):
             v += 1
     res.append({'library': 'quicksect', 'time (s)': time.time() - t0, 'v': v, "n": n})
 
-    # ncls
+    # # ncls
     starts = pd.Series(intervals[:, 0])
     ends = pd.Series(intervals[:, 1])
     tree = NCLS(starts, ends, starts)
@@ -67,9 +68,7 @@ def benchmark(n):
         if tree.intersect(i, i):
             v += 1
     res.append({'library': 'ailist', 'time (s)': time.time() - t0, 'v': v, "n": n})
-
-    df = pd.DataFrame.from_records(res)
-    return df
+    return pd.DataFrame.from_records(res)
 
 
 dfs = []
@@ -82,8 +81,8 @@ print(df)
 plt.figure()
 for name, grp in df.groupby('library'):
     plt.plot(grp['n'], grp['time (s)'], '-o', label=name)
-plt.xscale('log')
-plt.yscale('log')
+# plt.xscale('log')
+# plt.yscale('log')
 plt.legend()
 plt.savefig('benchmark.png')
 plt.show()
