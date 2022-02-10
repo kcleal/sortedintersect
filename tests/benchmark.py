@@ -84,7 +84,7 @@ for name, grp in df.groupby('library'):
 plt.legend()
 plt.xscale('log')
 plt.yscale('log')
-plt.savefig('benchmark.png')
 plt.xlabel('N query points')
 plt.ylabel('Time (s)')
+plt.savefig('benchmark.png')
 plt.show()

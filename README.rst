@@ -2,11 +2,13 @@
 sorted-intersect
 ================
 
+sortedintersect can be used for searching a set of reference intervals for intersecting points or intervals.
+
+
 A common task in bioinformatics is to check if an interval or point overlaps a set of reference intervals.
-An interval tree is often used for this purpose for queries in ~O(log n) time. However, if both the
-reference intervals and query intervals are sorted ahead of time, then query time can be reduced.
-This situation arises when processing a sorted alignment file and checking against a sorted reference interval set, for example.
-sorted-intersect uses a plane-sweep algorithm to find overlapping points/intervals.
+An interval tree is often used for this purpose although if both the
+reference intervals and query intervals are sorted ahead of time, then a simpler plane-sweep algorithm can be used.
+This situation arises when processing a sorted alignment or vcf file and checking against a sorted reference interval set, for example.
 
 
 Installation
@@ -104,8 +106,6 @@ which is not the case for sortedintersect:
      - 40.743349
      - 127.128570
      - 56.149942
-
-As a figure:
 
 .. image:: https://github.com/kcleal/sortedintersect/blob/master/tests/benchmark.png
 
