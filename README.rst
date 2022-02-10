@@ -2,11 +2,11 @@
 sorted-intersect
 ================
 
-Fast intersection of sorted intervals and sorted queries
 A common task in bioinformatics is to check if an interval or point overlaps a set of reference intervals.
-An interval tree is often used for this purpose for queries in O(log n) time. However, if both the
-reference intervals and query intervals are sorted ahead of time, then query time can be reduced. For example,
-this situation arises when processing a sorted alignment file and checking against a sorted reference interval set.
+An interval tree is often used for this purpose for queries in ~O(log n) time. However, if both the
+reference intervals and query intervals are sorted ahead of time, then query time can be reduced.
+This situation arises when processing a sorted alignment file and checking against a sorted reference interval set, for example.
+sorted-intersect uses a plane-sweep algorithm to find overlapping points/intervals.
 
 
 Installation
@@ -85,25 +85,27 @@ which is not the case for sortedintersect:
      - ncls (s)
      - ailist (s)
    * - 100 k
-     - 0.015715
+     - 0.006469
      - 0.033503
      - 0.123314
      - 0.053892
    * - 1 million
-     - 0.141112
+     - 0.064078
      - 0.334860
      - 1.230206
      - 0.570837
    * - 10 million
-     - 1.499679
+     - 0.630569
      - 3.962883
      - 12.819762
      - 5.696887
    * - 100 million
-     - 14.734016
+     - 6.407564
      - 40.743349
      - 127.128570
      - 56.149942
+
+![alt text](https://github.com/kcleal/sortedintersect/blob/master/tests/benchmark.png?raw=true)
 
 
 Limitations
