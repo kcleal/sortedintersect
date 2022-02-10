@@ -10,7 +10,7 @@ ext_modules.append(Extension("sortedintersect.intersect",
                              ))
 
 
-setup(version='0.1.0',
+setup(version='0.2.0',
       name='sortedintersect',
       description="Interval intersection for sorted query and target intervals",
       long_description=open('README.rst').read(),

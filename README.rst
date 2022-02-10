@@ -4,10 +4,8 @@ sorted-intersect
 
 sortedintersect can be used for searching a set of reference intervals for intersecting points or intervals.
 
-
 A common task in bioinformatics is to check if an interval or point overlaps a set of reference intervals.
-An interval tree is often used for this purpose although if both the
-reference intervals and query intervals are sorted ahead of time, then a simpler plane-sweep algorithm can be used.
+An interval tree is often used for this purpose although if both the reference intervals and query intervals are sorted ahead of time, then a simple plane-sweep algorithm can be used.
 This situation arises when processing a sorted alignment or vcf file and checking against a sorted reference interval set, for example.
 
 
