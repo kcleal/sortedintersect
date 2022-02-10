@@ -107,7 +107,7 @@ which is not the case for sortedintersect:
 
 As a figure:
 
-![Alt text](tests/benchmark.png?raw=true)
+.. image:: https://github.com/kcleal/sortedintersect/blob/master/tests/benchmark.png
 
 
 Limitations
