@@ -13,6 +13,9 @@ This situation arises when processing a sorted alignment or vcf file and checkin
 
 Installation
 ------------
+Download from pypi::
+
+    pip install sortedintersect
 
 To build from source::
 

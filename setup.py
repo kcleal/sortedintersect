@@ -6,7 +6,6 @@ ext_modules = list()
 ext_modules.append(Extension("sortedintersect.intersect",
                              ["sortedintersect/intersect.pyx"],
                              # extra_compile_args=extras,
-                             # define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
                              language="c++",
                              ))
 
