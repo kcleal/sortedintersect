@@ -105,7 +105,9 @@ which is not the case for sortedintersect:
      - 127.128570
      - 56.149942
 
-![alt text](https://github.com/kcleal/sortedintersect/blob/master/tests/benchmark.png?raw=true)
+As a figure:
+
+![Alt text](tests/benchmark.png?raw=true)
 
 
 Limitations
