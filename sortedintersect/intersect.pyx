@@ -97,7 +97,7 @@ cdef class ISet:
 
 
     cpdef search_interval(self, int start, int end):
-
+        assert end >= start
         cdef uint64_t i = self.index
         if self.starts.size() == 0 or i >= self.starts.size():
             return False
