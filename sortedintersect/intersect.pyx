@@ -103,7 +103,7 @@ cdef class ISet:
             return False
 
         if start < self.last_q_start:
-            raise ValueError(f'Interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}')
+            raise ValueError(f'Search interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}')
 
         cdef bint passed = False
         self.last_q_start = start
