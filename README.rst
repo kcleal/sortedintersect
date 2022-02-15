@@ -34,16 +34,16 @@ Common usage is to check if a point overlaps a reference set:
     itv = IntervalSet(False)
     itv.add(0, 10)
     itv.search_point(1)
-    # >>> True
+    # >>> (0, 10)
 
     # intervals with python object as data
     itv = IntervalSet(True)
     itv.add(0, 10, 'interval1')
     itv.add(20, 30, {'a': 1})
     itv.search_point(1)
-    # >>> 'interval1'
+    # >>> (0, 10, 'interval1')
     itv.search_point(20)
-    # >>> {'a': 1}
+    # >>> (20, 30, {'a': 1})
 
 Note, both reference and query intervals must be added and queried in sorted order otherwise a ValueError will be raised:
 
@@ -54,7 +54,8 @@ Note, both reference and query intervals must be added and queried in sorted ord
     itv.add(10, 11)
     itv.add(0, 1)
     # >>> ValueError
-    itv.search_point(10)  # True
+    itv.search_point(10)
+    # >>> (10, 11)
     itv.search_point(9)
     # >>> ValueError
 
@@ -66,10 +67,12 @@ Intervals can also be queried:
     # intervals without data
     itv = IntervalSet(False)
     itv.add(10, 11)
+    itv.add(11, 12)
     itv.add(50, 60)
-    itv.search_interval(9, 10)   # True
+    itv.search_interval(9, 10)   # (10, 11)
+    itv.search_interval(11, 12)   # (10, 11)
     itv.search_interval(20, 30)  # False
-    itv.search_interval(50, 51)  # True
+    itv.search_interval(50, 51)  # (50, 60)
 
 Benchmarks
 ----------
