@@ -7,6 +7,19 @@ from libc.stdint cimport uint64_t
 __all__ = ["IntervalSet"]
 
 
+cdef struct Interval:
+    int low
+    int high
+
+
+cdef extern from "sisect.h":
+    cdef cppclass SortedIntersecter:
+        BasicIntervalTree()
+        void add(int, int, int)
+        Interval* searchPoint(int, int)
+
+
+
 cdef inline bint is_overlapping(int x1, int x2, int y1, int y2) nogil:
     return max(x1, y1) <= min(x2, y2)
 

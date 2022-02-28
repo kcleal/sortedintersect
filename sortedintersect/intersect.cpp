@@ -696,6 +696,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "typeinfo"
 #include <vector>
 #include <stdint.h>
+#include "sisect.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -911,9 +912,22 @@ static const char *__pyx_f[] = {
 
 /*--- Type declarations ---*/
 struct __pyx_obj_15sortedintersect_9intersect_ISet;
+struct __pyx_t_15sortedintersect_9intersect_Interval;
 struct __pyx_opt_args_15sortedintersect_9intersect_4ISet_add;
 
-/* "sortedintersect/intersect.pyx":38
+/* "sortedintersect/intersect.pyx":10
+ * 
+ * 
+ * cdef struct Interval:             # <<<<<<<<<<<<<<
+ *     int low
+ *     int high
+ */
+struct __pyx_t_15sortedintersect_9intersect_Interval {
+  int low;
+  int high;
+};
+
+/* "sortedintersect/intersect.pyx":51
  *         self.index = 0
  * 
  *     cpdef add(self, int start, int end, value=None):             # <<<<<<<<<<<<<<
@@ -925,7 +939,7 @@ struct __pyx_opt_args_15sortedintersect_9intersect_4ISet_add {
   PyObject *value;
 };
 
-/* "sortedintersect/intersect.pyx":14
+/* "sortedintersect/intersect.pyx":27
  * 
  * 
  * cdef class ISet:             # <<<<<<<<<<<<<<
@@ -1546,7 +1560,7 @@ static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_codeobj__3;
 /* Late includes */
 
-/* "sortedintersect/intersect.pyx":10
+/* "sortedintersect/intersect.pyx":23
  * 
  * 
  * cdef inline bint is_overlapping(int x1, int x2, int y1, int y2) nogil:             # <<<<<<<<<<<<<<
@@ -1561,7 +1575,7 @@ static CYTHON_INLINE int __pyx_f_15sortedintersect_9intersect_is_overlapping(int
   int __pyx_t_3;
   int __pyx_t_4;
 
-  /* "sortedintersect/intersect.pyx":11
+  /* "sortedintersect/intersect.pyx":24
  * 
  * cdef inline bint is_overlapping(int x1, int x2, int y1, int y2) nogil:
  *     return max(x1, y1) <= min(x2, y2)             # <<<<<<<<<<<<<<
@@ -1585,7 +1599,7 @@ static CYTHON_INLINE int __pyx_f_15sortedintersect_9intersect_is_overlapping(int
   __pyx_r = (__pyx_t_3 <= __pyx_t_4);
   goto __pyx_L0;
 
-  /* "sortedintersect/intersect.pyx":10
+  /* "sortedintersect/intersect.pyx":23
  * 
  * 
  * cdef inline bint is_overlapping(int x1, int x2, int y1, int y2) nogil:             # <<<<<<<<<<<<<<
@@ -1598,7 +1612,7 @@ static CYTHON_INLINE int __pyx_f_15sortedintersect_9intersect_is_overlapping(int
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":25
+/* "sortedintersect/intersect.pyx":38
  *     cdef bint started_ref
  *     cdef object data
  *     def __init__(self, with_data):             # <<<<<<<<<<<<<<
@@ -1635,7 +1649,7 @@ static int __pyx_pw_15sortedintersect_9intersect_4ISet_1__init__(PyObject *__pyx
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 25, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 38, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -1646,7 +1660,7 @@ static int __pyx_pw_15sortedintersect_9intersect_4ISet_1__init__(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 25, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 38, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sortedintersect.intersect.ISet.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1669,17 +1683,17 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "sortedintersect/intersect.pyx":26
+  /* "sortedintersect/intersect.pyx":39
  *     cdef object data
  *     def __init__(self, with_data):
  *         if with_data:             # <<<<<<<<<<<<<<
  *             self.add_data = True
  *             self.data = []
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_with_data); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_with_data); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "sortedintersect/intersect.pyx":27
+    /* "sortedintersect/intersect.pyx":40
  *     def __init__(self, with_data):
  *         if with_data:
  *             self.add_data = True             # <<<<<<<<<<<<<<
@@ -1688,14 +1702,14 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
     __pyx_v_self->add_data = 1;
 
-    /* "sortedintersect/intersect.pyx":28
+    /* "sortedintersect/intersect.pyx":41
  *         if with_data:
  *             self.add_data = True
  *             self.data = []             # <<<<<<<<<<<<<<
  *         else:
  *             self.add_data = False
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_v_self->data);
@@ -1703,7 +1717,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
     __pyx_v_self->data = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "sortedintersect/intersect.pyx":26
+    /* "sortedintersect/intersect.pyx":39
  *     cdef object data
  *     def __init__(self, with_data):
  *         if with_data:             # <<<<<<<<<<<<<<
@@ -1713,7 +1727,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
     goto __pyx_L3;
   }
 
-  /* "sortedintersect/intersect.pyx":30
+  /* "sortedintersect/intersect.pyx":43
  *             self.data = []
  *         else:
  *             self.add_data = False             # <<<<<<<<<<<<<<
@@ -1723,7 +1737,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
   /*else*/ {
     __pyx_v_self->add_data = 0;
 
-    /* "sortedintersect/intersect.pyx":31
+    /* "sortedintersect/intersect.pyx":44
  *         else:
  *             self.add_data = False
  *             self.data = None             # <<<<<<<<<<<<<<
@@ -1738,7 +1752,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
   }
   __pyx_L3:;
 
-  /* "sortedintersect/intersect.pyx":32
+  /* "sortedintersect/intersect.pyx":45
  *             self.add_data = False
  *             self.data = None
  *         self.last_r_start = -2_147_483_648             # <<<<<<<<<<<<<<
@@ -1747,7 +1761,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
   __pyx_v_self->last_r_start = -2147483648;
 
-  /* "sortedintersect/intersect.pyx":33
+  /* "sortedintersect/intersect.pyx":46
  *             self.data = None
  *         self.last_r_start = -2_147_483_648
  *         self.last_q_start = -2_147_483_648             # <<<<<<<<<<<<<<
@@ -1756,7 +1770,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
   __pyx_v_self->last_q_start = -2147483648;
 
-  /* "sortedintersect/intersect.pyx":34
+  /* "sortedintersect/intersect.pyx":47
  *         self.last_r_start = -2_147_483_648
  *         self.last_q_start = -2_147_483_648
  *         self.current_r_start = 0             # <<<<<<<<<<<<<<
@@ -1765,7 +1779,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
   __pyx_v_self->current_r_start = 0;
 
-  /* "sortedintersect/intersect.pyx":35
+  /* "sortedintersect/intersect.pyx":48
  *         self.last_q_start = -2_147_483_648
  *         self.current_r_start = 0
  *         self.current_r_end = 0             # <<<<<<<<<<<<<<
@@ -1774,7 +1788,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
   __pyx_v_self->current_r_end = 0;
 
-  /* "sortedintersect/intersect.pyx":36
+  /* "sortedintersect/intersect.pyx":49
  *         self.current_r_start = 0
  *         self.current_r_end = 0
  *         self.index = 0             # <<<<<<<<<<<<<<
@@ -1783,7 +1797,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
  */
   __pyx_v_self->index = 0;
 
-  /* "sortedintersect/intersect.pyx":25
+  /* "sortedintersect/intersect.pyx":38
  *     cdef bint started_ref
  *     cdef object data
  *     def __init__(self, with_data):             # <<<<<<<<<<<<<<
@@ -1803,7 +1817,7 @@ static int __pyx_pf_15sortedintersect_9intersect_4ISet___init__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":38
+/* "sortedintersect/intersect.pyx":51
  *         self.index = 0
  * 
  *     cpdef add(self, int start, int end, value=None):             # <<<<<<<<<<<<<<
@@ -1846,13 +1860,13 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_15sortedintersect_9intersect_4ISet_3add)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 51, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -1870,7 +1884,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_3, __pyx_t_4, __pyx_v_value};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -1880,7 +1894,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_3, __pyx_t_4, __pyx_v_value};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -1888,7 +1902,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 38, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 51, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -1902,7 +1916,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
           PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_v_value);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -1925,7 +1939,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     #endif
   }
 
-  /* "sortedintersect/intersect.pyx":39
+  /* "sortedintersect/intersect.pyx":52
  * 
  *     cpdef add(self, int start, int end, value=None):
  *         assert end >= start             # <<<<<<<<<<<<<<
@@ -1936,12 +1950,12 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_end >= __pyx_v_start) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 39, __pyx_L1_error)
+      __PYX_ERR(0, 52, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "sortedintersect/intersect.pyx":40
+  /* "sortedintersect/intersect.pyx":53
  *     cpdef add(self, int start, int end, value=None):
  *         assert end >= start
  *         if start < self.last_r_start:             # <<<<<<<<<<<<<<
@@ -1951,14 +1965,14 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
   __pyx_t_9 = ((__pyx_v_start < __pyx_v_self->last_r_start) != 0);
   if (unlikely(__pyx_t_9)) {
 
-    /* "sortedintersect/intersect.pyx":41
+    /* "sortedintersect/intersect.pyx":54
  *         assert end >= start
  *         if start < self.last_r_start:
  *             raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')             # <<<<<<<<<<<<<<
  *         self.starts.push_back(start)
  *         self.ends.push_back(end)
  */
-    __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_10 = 0;
     __pyx_t_11 = 127;
@@ -1966,7 +1980,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     __pyx_t_10 += 9;
     __Pyx_GIVEREF(__pyx_kp_u_Interval);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Interval);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_10 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -1976,7 +1990,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     __pyx_t_10 += 1;
     __Pyx_GIVEREF(__pyx_kp_u_);
     PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_10 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -1986,23 +2000,23 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     __pyx_t_10 += 48;
     __Pyx_GIVEREF(__pyx_kp_u_is_not_in_sorted_order_last_int);
     PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_is_not_in_sorted_order_last_int);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_r_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_r_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_10 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 5, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 6, __pyx_t_10, __pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 6, __pyx_t_10, __pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 41, __pyx_L1_error)
+    __PYX_ERR(0, 54, __pyx_L1_error)
 
-    /* "sortedintersect/intersect.pyx":40
+    /* "sortedintersect/intersect.pyx":53
  *     cpdef add(self, int start, int end, value=None):
  *         assert end >= start
  *         if start < self.last_r_start:             # <<<<<<<<<<<<<<
@@ -2011,7 +2025,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
  */
   }
 
-  /* "sortedintersect/intersect.pyx":42
+  /* "sortedintersect/intersect.pyx":55
  *         if start < self.last_r_start:
  *             raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
  *         self.starts.push_back(start)             # <<<<<<<<<<<<<<
@@ -2022,10 +2036,10 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     __pyx_v_self->starts.push_back(__pyx_v_start);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 42, __pyx_L1_error)
+    __PYX_ERR(0, 55, __pyx_L1_error)
   }
 
-  /* "sortedintersect/intersect.pyx":43
+  /* "sortedintersect/intersect.pyx":56
  *             raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
  *         self.starts.push_back(start)
  *         self.ends.push_back(end)             # <<<<<<<<<<<<<<
@@ -2036,10 +2050,10 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
     __pyx_v_self->ends.push_back(__pyx_v_end);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 56, __pyx_L1_error)
   }
 
-  /* "sortedintersect/intersect.pyx":44
+  /* "sortedintersect/intersect.pyx":57
  *         self.starts.push_back(start)
  *         self.ends.push_back(end)
  *         self.last_r_start = start             # <<<<<<<<<<<<<<
@@ -2048,7 +2062,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
  */
   __pyx_v_self->last_r_start = __pyx_v_start;
 
-  /* "sortedintersect/intersect.pyx":45
+  /* "sortedintersect/intersect.pyx":58
  *         self.ends.push_back(end)
  *         self.last_r_start = start
  *         if self.add_data:             # <<<<<<<<<<<<<<
@@ -2058,16 +2072,16 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
   __pyx_t_9 = (__pyx_v_self->add_data != 0);
   if (__pyx_t_9) {
 
-    /* "sortedintersect/intersect.pyx":46
+    /* "sortedintersect/intersect.pyx":59
  *         self.last_r_start = start
  *         if self.add_data:
  *             self.data.append(value)             # <<<<<<<<<<<<<<
  * 
  *     cpdef add_from_iter(self, iterable):
  */
-    __pyx_t_12 = __Pyx_PyObject_Append(__pyx_v_self->data, __pyx_v_value); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_Append(__pyx_v_self->data, __pyx_v_value); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 59, __pyx_L1_error)
 
-    /* "sortedintersect/intersect.pyx":45
+    /* "sortedintersect/intersect.pyx":58
  *         self.ends.push_back(end)
  *         self.last_r_start = start
  *         if self.add_data:             # <<<<<<<<<<<<<<
@@ -2076,7 +2090,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add(struct __pyx_obj
  */
   }
 
-  /* "sortedintersect/intersect.pyx":38
+  /* "sortedintersect/intersect.pyx":51
  *         self.index = 0
  * 
  *     cpdef add(self, int start, int end, value=None):             # <<<<<<<<<<<<<<
@@ -2141,7 +2155,7 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_3add(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_end)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("add", 0, 2, 3, 1); __PYX_ERR(0, 38, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add", 0, 2, 3, 1); __PYX_ERR(0, 51, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -2151,7 +2165,7 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_3add(PyObject *__py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(0, 51, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2163,13 +2177,13 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_3add(PyObject *__py
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_start == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
-    __pyx_v_end = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_end == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
+    __pyx_v_start = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_start == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L3_error)
+    __pyx_v_end = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_end == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L3_error)
     __pyx_v_value = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 38, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 51, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sortedintersect.intersect.ISet.add", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2194,7 +2208,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_2add(struct __pyx_o
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.value = __pyx_v_value;
-  __pyx_t_1 = __pyx_vtabptr_15sortedintersect_9intersect_ISet->add(__pyx_v_self, __pyx_v_start, __pyx_v_end, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_1 = __pyx_vtabptr_15sortedintersect_9intersect_ISet->add(__pyx_v_self, __pyx_v_start, __pyx_v_end, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2211,7 +2225,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_2add(struct __pyx_o
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":48
+/* "sortedintersect/intersect.pyx":61
  *             self.data.append(value)
  * 
  *     cpdef add_from_iter(self, iterable):             # <<<<<<<<<<<<<<
@@ -2250,7 +2264,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add_from_iter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add_from_iter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_15sortedintersect_9intersect_4ISet_5add_from_iter)) {
         __Pyx_XDECREF(__pyx_r);
@@ -2267,7 +2281,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_iterable) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_iterable);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -2288,7 +2302,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     #endif
   }
 
-  /* "sortedintersect/intersect.pyx":50
+  /* "sortedintersect/intersect.pyx":63
  *     cpdef add_from_iter(self, iterable):
  *         cdef int start, end
  *         for item in iterable:             # <<<<<<<<<<<<<<
@@ -2299,26 +2313,26 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     __pyx_t_1 = __pyx_v_iterable; __Pyx_INCREF(__pyx_t_1); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_iterable); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_iterable); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 63, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_6)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -2328,7 +2342,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 50, __pyx_L1_error)
+          else __PYX_ERR(0, 63, __pyx_L1_error)
         }
         break;
       }
@@ -2337,33 +2351,33 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "sortedintersect/intersect.pyx":51
+    /* "sortedintersect/intersect.pyx":64
  *         cdef int start, end
  *         for item in iterable:
  *             start = item[0]             # <<<<<<<<<<<<<<
  *             end = item[1]
  *             assert end >= start
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_start = __pyx_t_7;
 
-    /* "sortedintersect/intersect.pyx":52
+    /* "sortedintersect/intersect.pyx":65
  *         for item in iterable:
  *             start = item[0]
  *             end = item[1]             # <<<<<<<<<<<<<<
  *             assert end >= start
  *             if start < self.last_r_start:
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 65, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_end = __pyx_t_7;
 
-    /* "sortedintersect/intersect.pyx":53
+    /* "sortedintersect/intersect.pyx":66
  *             start = item[0]
  *             end = item[1]
  *             assert end >= start             # <<<<<<<<<<<<<<
@@ -2374,12 +2388,12 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!((__pyx_v_end >= __pyx_v_start) != 0))) {
         PyErr_SetNone(PyExc_AssertionError);
-        __PYX_ERR(0, 53, __pyx_L1_error)
+        __PYX_ERR(0, 66, __pyx_L1_error)
       }
     }
     #endif
 
-    /* "sortedintersect/intersect.pyx":54
+    /* "sortedintersect/intersect.pyx":67
  *             end = item[1]
  *             assert end >= start
  *             if start < self.last_r_start:             # <<<<<<<<<<<<<<
@@ -2389,14 +2403,14 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     __pyx_t_8 = ((__pyx_v_start < __pyx_v_self->last_r_start) != 0);
     if (unlikely(__pyx_t_8)) {
 
-      /* "sortedintersect/intersect.pyx":55
+      /* "sortedintersect/intersect.pyx":68
  *             assert end >= start
  *             if start < self.last_r_start:
  *                 raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')             # <<<<<<<<<<<<<<
  *             self.starts.push_back(start)
  *             self.ends.push_back(end)
  */
-      __pyx_t_2 = PyTuple_New(6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_9 = 0;
       __pyx_t_10 = 127;
@@ -2404,7 +2418,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
       __pyx_t_9 += 9;
       __Pyx_GIVEREF(__pyx_kp_u_Interval);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Interval);
-      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_9 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
@@ -2414,7 +2428,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
       __pyx_t_9 += 1;
       __Pyx_GIVEREF(__pyx_kp_u_);
       PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_kp_u_);
-      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_9 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
@@ -2424,23 +2438,23 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
       __pyx_t_9 += 48;
       __Pyx_GIVEREF(__pyx_kp_u_is_not_in_sorted_order_last_int);
       PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_kp_u_is_not_in_sorted_order_last_int);
-      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_r_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_r_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_9 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_2, 5, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 6, __pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 6, __pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 55, __pyx_L1_error)
+      __PYX_ERR(0, 68, __pyx_L1_error)
 
-      /* "sortedintersect/intersect.pyx":54
+      /* "sortedintersect/intersect.pyx":67
  *             end = item[1]
  *             assert end >= start
  *             if start < self.last_r_start:             # <<<<<<<<<<<<<<
@@ -2449,7 +2463,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
  */
     }
 
-    /* "sortedintersect/intersect.pyx":56
+    /* "sortedintersect/intersect.pyx":69
  *             if start < self.last_r_start:
  *                 raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
  *             self.starts.push_back(start)             # <<<<<<<<<<<<<<
@@ -2460,10 +2474,10 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
       __pyx_v_self->starts.push_back(__pyx_v_start);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 56, __pyx_L1_error)
+      __PYX_ERR(0, 69, __pyx_L1_error)
     }
 
-    /* "sortedintersect/intersect.pyx":57
+    /* "sortedintersect/intersect.pyx":70
  *                 raise ValueError(f'Interval {start}-{end} is not in sorted order, last interval seen was {self.last_r_start}')
  *             self.starts.push_back(start)
  *             self.ends.push_back(end)             # <<<<<<<<<<<<<<
@@ -2474,10 +2488,10 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
       __pyx_v_self->ends.push_back(__pyx_v_end);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 57, __pyx_L1_error)
+      __PYX_ERR(0, 70, __pyx_L1_error)
     }
 
-    /* "sortedintersect/intersect.pyx":58
+    /* "sortedintersect/intersect.pyx":71
  *             self.starts.push_back(start)
  *             self.ends.push_back(end)
  *             self.last_r_start = start             # <<<<<<<<<<<<<<
@@ -2486,7 +2500,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
  */
     __pyx_v_self->last_r_start = __pyx_v_start;
 
-    /* "sortedintersect/intersect.pyx":59
+    /* "sortedintersect/intersect.pyx":72
  *             self.ends.push_back(end)
  *             self.last_r_start = start
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -2496,19 +2510,19 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
     __pyx_t_8 = (__pyx_v_self->add_data != 0);
     if (__pyx_t_8) {
 
-      /* "sortedintersect/intersect.pyx":60
+      /* "sortedintersect/intersect.pyx":73
  *             self.last_r_start = start
  *             if self.add_data:
  *                 self.data.append(item[2])             # <<<<<<<<<<<<<<
  * 
  *     cpdef search_point(self, int pos):
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_self->data, __pyx_t_2); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_self->data, __pyx_t_2); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "sortedintersect/intersect.pyx":59
+      /* "sortedintersect/intersect.pyx":72
  *             self.ends.push_back(end)
  *             self.last_r_start = start
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -2517,7 +2531,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
  */
     }
 
-    /* "sortedintersect/intersect.pyx":50
+    /* "sortedintersect/intersect.pyx":63
  *     cpdef add_from_iter(self, iterable):
  *         cdef int start, end
  *         for item in iterable:             # <<<<<<<<<<<<<<
@@ -2527,7 +2541,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(struct
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sortedintersect/intersect.pyx":48
+  /* "sortedintersect/intersect.pyx":61
  *             self.data.append(value)
  * 
  *     cpdef add_from_iter(self, iterable):             # <<<<<<<<<<<<<<
@@ -2574,7 +2588,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_4add_from_iter(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_from_iter", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(__pyx_v_self, __pyx_v_iterable, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter(__pyx_v_self, __pyx_v_iterable, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2591,7 +2605,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_4add_from_iter(stru
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":62
+/* "sortedintersect/intersect.pyx":75
  *                 self.data.append(item[2])
  * 
  *     cpdef search_point(self, int pos):             # <<<<<<<<<<<<<<
@@ -2628,11 +2642,11 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_search_point); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_search_point); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_15sortedintersect_9intersect_4ISet_7search_point)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -2648,7 +2662,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_r = __pyx_t_2;
@@ -2669,7 +2683,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     #endif
   }
 
-  /* "sortedintersect/intersect.pyx":64
+  /* "sortedintersect/intersect.pyx":77
  *     cpdef search_point(self, int pos):
  * 
  *         cdef uint64_t i = self.index             # <<<<<<<<<<<<<<
@@ -2679,7 +2693,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_t_6 = __pyx_v_self->index;
   __pyx_v_i = __pyx_t_6;
 
-  /* "sortedintersect/intersect.pyx":66
+  /* "sortedintersect/intersect.pyx":79
  *         cdef uint64_t i = self.index
  * 
  *         if self.starts.size() == 0 or i >= self.starts.size():             # <<<<<<<<<<<<<<
@@ -2697,7 +2711,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_7) {
 
-    /* "sortedintersect/intersect.pyx":67
+    /* "sortedintersect/intersect.pyx":80
  * 
  *         if self.starts.size() == 0 or i >= self.starts.size():
  *             return False             # <<<<<<<<<<<<<<
@@ -2709,7 +2723,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "sortedintersect/intersect.pyx":66
+    /* "sortedintersect/intersect.pyx":79
  *         cdef uint64_t i = self.index
  * 
  *         if self.starts.size() == 0 or i >= self.starts.size():             # <<<<<<<<<<<<<<
@@ -2718,7 +2732,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   }
 
-  /* "sortedintersect/intersect.pyx":69
+  /* "sortedintersect/intersect.pyx":82
  *             return False
  * 
  *         if pos < self.last_q_start:             # <<<<<<<<<<<<<<
@@ -2728,14 +2742,14 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_t_7 = ((__pyx_v_pos < __pyx_v_self->last_q_start) != 0);
   if (unlikely(__pyx_t_7)) {
 
-    /* "sortedintersect/intersect.pyx":70
+    /* "sortedintersect/intersect.pyx":83
  * 
  *         if pos < self.last_q_start:
  *             raise ValueError(f'Position {pos} is not in sorted order, last query interval seen was {self.last_q_start}')             # <<<<<<<<<<<<<<
  * 
  *         cdef bint passed = False
  */
-    __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_9 = 0;
     __pyx_t_10 = 127;
@@ -2743,7 +2757,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     __pyx_t_9 += 9;
     __Pyx_GIVEREF(__pyx_kp_u_Position);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Position);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_pos, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_pos, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_9 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -2753,23 +2767,23 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     __pyx_t_9 += 54;
     __Pyx_GIVEREF(__pyx_kp_u_is_not_in_sorted_order_last_que);
     PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_is_not_in_sorted_order_last_que);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_q_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_q_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_9 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 4, __pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 4, __pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 70, __pyx_L1_error)
+    __PYX_ERR(0, 83, __pyx_L1_error)
 
-    /* "sortedintersect/intersect.pyx":69
+    /* "sortedintersect/intersect.pyx":82
  *             return False
  * 
  *         if pos < self.last_q_start:             # <<<<<<<<<<<<<<
@@ -2778,7 +2792,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   }
 
-  /* "sortedintersect/intersect.pyx":72
+  /* "sortedintersect/intersect.pyx":85
  *             raise ValueError(f'Position {pos} is not in sorted order, last query interval seen was {self.last_q_start}')
  * 
  *         cdef bint passed = False             # <<<<<<<<<<<<<<
@@ -2787,7 +2801,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   __pyx_v_passed = 0;
 
-  /* "sortedintersect/intersect.pyx":73
+  /* "sortedintersect/intersect.pyx":86
  * 
  *         cdef bint passed = False
  *         self.current_r_start = self.starts[i]             # <<<<<<<<<<<<<<
@@ -2796,7 +2810,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   __pyx_v_self->current_r_start = (__pyx_v_self->starts[__pyx_v_i]);
 
-  /* "sortedintersect/intersect.pyx":74
+  /* "sortedintersect/intersect.pyx":87
  *         cdef bint passed = False
  *         self.current_r_start = self.starts[i]
  *         self.current_r_end = self.ends[i]             # <<<<<<<<<<<<<<
@@ -2805,7 +2819,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   __pyx_v_self->current_r_end = (__pyx_v_self->ends[__pyx_v_i]);
 
-  /* "sortedintersect/intersect.pyx":75
+  /* "sortedintersect/intersect.pyx":88
  *         self.current_r_start = self.starts[i]
  *         self.current_r_end = self.ends[i]
  *         self.last_q_start = pos             # <<<<<<<<<<<<<<
@@ -2814,7 +2828,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   __pyx_v_self->last_q_start = __pyx_v_pos;
 
-  /* "sortedintersect/intersect.pyx":76
+  /* "sortedintersect/intersect.pyx":89
  *         self.current_r_end = self.ends[i]
  *         self.last_q_start = pos
  *         if pos > self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2824,7 +2838,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_t_7 = ((__pyx_v_pos > __pyx_v_self->current_r_end) != 0);
   if (__pyx_t_7) {
 
-    /* "sortedintersect/intersect.pyx":77
+    /* "sortedintersect/intersect.pyx":90
  *         self.last_q_start = pos
  *         if pos > self.current_r_end:
  *             i += 1             # <<<<<<<<<<<<<<
@@ -2833,7 +2847,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
     __pyx_v_i = (__pyx_v_i + 1);
 
-    /* "sortedintersect/intersect.pyx":78
+    /* "sortedintersect/intersect.pyx":91
  *         if pos > self.current_r_end:
  *             i += 1
  *             while i < self.starts.size():             # <<<<<<<<<<<<<<
@@ -2844,7 +2858,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
       __pyx_t_7 = ((__pyx_v_i < __pyx_v_self->starts.size()) != 0);
       if (!__pyx_t_7) break;
 
-      /* "sortedintersect/intersect.pyx":79
+      /* "sortedintersect/intersect.pyx":92
  *             i += 1
  *             while i < self.starts.size():
  *                 self.current_r_start = self.starts[i]             # <<<<<<<<<<<<<<
@@ -2853,7 +2867,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
       __pyx_v_self->current_r_start = (__pyx_v_self->starts[__pyx_v_i]);
 
-      /* "sortedintersect/intersect.pyx":80
+      /* "sortedintersect/intersect.pyx":93
  *             while i < self.starts.size():
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]             # <<<<<<<<<<<<<<
@@ -2862,7 +2876,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
       __pyx_v_self->current_r_end = (__pyx_v_self->ends[__pyx_v_i]);
 
-      /* "sortedintersect/intersect.pyx":81
+      /* "sortedintersect/intersect.pyx":94
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]
  *                 if pos < self.current_r_start:             # <<<<<<<<<<<<<<
@@ -2872,7 +2886,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
       __pyx_t_7 = ((__pyx_v_pos < __pyx_v_self->current_r_start) != 0);
       if (__pyx_t_7) {
 
-        /* "sortedintersect/intersect.pyx":82
+        /* "sortedintersect/intersect.pyx":95
  *                 self.current_r_end = self.ends[i]
  *                 if pos < self.current_r_start:
  *                     break             # <<<<<<<<<<<<<<
@@ -2881,7 +2895,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
         goto __pyx_L9_break;
 
-        /* "sortedintersect/intersect.pyx":81
+        /* "sortedintersect/intersect.pyx":94
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]
  *                 if pos < self.current_r_start:             # <<<<<<<<<<<<<<
@@ -2890,7 +2904,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
       }
 
-      /* "sortedintersect/intersect.pyx":83
+      /* "sortedintersect/intersect.pyx":96
  *                 if pos < self.current_r_start:
  *                     break
  *                 elif self.current_r_start <= pos <= self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2904,7 +2918,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
       __pyx_t_8 = (__pyx_t_7 != 0);
       if (__pyx_t_8) {
 
-        /* "sortedintersect/intersect.pyx":84
+        /* "sortedintersect/intersect.pyx":97
  *                     break
  *                 elif self.current_r_start <= pos <= self.current_r_end:
  *                     passed = True             # <<<<<<<<<<<<<<
@@ -2913,7 +2927,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
         __pyx_v_passed = 1;
 
-        /* "sortedintersect/intersect.pyx":85
+        /* "sortedintersect/intersect.pyx":98
  *                 elif self.current_r_start <= pos <= self.current_r_end:
  *                     passed = True
  *                     break             # <<<<<<<<<<<<<<
@@ -2922,7 +2936,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
         goto __pyx_L9_break;
 
-        /* "sortedintersect/intersect.pyx":83
+        /* "sortedintersect/intersect.pyx":96
  *                 if pos < self.current_r_start:
  *                     break
  *                 elif self.current_r_start <= pos <= self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2931,7 +2945,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
       }
 
-      /* "sortedintersect/intersect.pyx":86
+      /* "sortedintersect/intersect.pyx":99
  *                     passed = True
  *                     break
  *                 i += 1             # <<<<<<<<<<<<<<
@@ -2942,7 +2956,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     }
     __pyx_L9_break:;
 
-    /* "sortedintersect/intersect.pyx":87
+    /* "sortedintersect/intersect.pyx":100
  *                     break
  *                 i += 1
  *             self.index = i             # <<<<<<<<<<<<<<
@@ -2951,7 +2965,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
     __pyx_v_self->index = __pyx_v_i;
 
-    /* "sortedintersect/intersect.pyx":76
+    /* "sortedintersect/intersect.pyx":89
  *         self.current_r_end = self.ends[i]
  *         self.last_q_start = pos
  *         if pos > self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2961,7 +2975,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     goto __pyx_L7;
   }
 
-  /* "sortedintersect/intersect.pyx":89
+  /* "sortedintersect/intersect.pyx":102
  *             self.index = i
  * 
  *         elif self.current_r_start <= pos <= self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2975,7 +2989,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_t_7 = (__pyx_t_8 != 0);
   if (__pyx_t_7) {
 
-    /* "sortedintersect/intersect.pyx":90
+    /* "sortedintersect/intersect.pyx":103
  * 
  *         elif self.current_r_start <= pos <= self.current_r_end:
  *             passed = True             # <<<<<<<<<<<<<<
@@ -2984,7 +2998,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
     __pyx_v_passed = 1;
 
-    /* "sortedintersect/intersect.pyx":89
+    /* "sortedintersect/intersect.pyx":102
  *             self.index = i
  * 
  *         elif self.current_r_start <= pos <= self.current_r_end:             # <<<<<<<<<<<<<<
@@ -2994,7 +3008,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   }
   __pyx_L7:;
 
-  /* "sortedintersect/intersect.pyx":92
+  /* "sortedintersect/intersect.pyx":105
  *             passed = True
  * 
  *         if passed:             # <<<<<<<<<<<<<<
@@ -3004,7 +3018,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_t_7 = (__pyx_v_passed != 0);
   if (__pyx_t_7) {
 
-    /* "sortedintersect/intersect.pyx":93
+    /* "sortedintersect/intersect.pyx":106
  * 
  *         if passed:
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -3014,7 +3028,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     __pyx_t_7 = (__pyx_v_self->add_data != 0);
     if (__pyx_t_7) {
 
-      /* "sortedintersect/intersect.pyx":94
+      /* "sortedintersect/intersect.pyx":107
  *         if passed:
  *             if self.add_data:
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]             # <<<<<<<<<<<<<<
@@ -3022,13 +3036,13 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  *         return False
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_self->data, __pyx_v_self->index, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_self->data, __pyx_v_self->index, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -3043,7 +3057,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "sortedintersect/intersect.pyx":93
+      /* "sortedintersect/intersect.pyx":106
  * 
  *         if passed:
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -3052,7 +3066,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
     }
 
-    /* "sortedintersect/intersect.pyx":95
+    /* "sortedintersect/intersect.pyx":108
  *             if self.add_data:
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]
  *             return self.current_r_start, self.current_r_end             # <<<<<<<<<<<<<<
@@ -3060,11 +3074,11 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3);
@@ -3076,7 +3090,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "sortedintersect/intersect.pyx":92
+    /* "sortedintersect/intersect.pyx":105
  *             passed = True
  * 
  *         if passed:             # <<<<<<<<<<<<<<
@@ -3085,7 +3099,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
  */
   }
 
-  /* "sortedintersect/intersect.pyx":96
+  /* "sortedintersect/intersect.pyx":109
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]
  *             return self.current_r_start, self.current_r_end
  *         return False             # <<<<<<<<<<<<<<
@@ -3097,7 +3111,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_point(struct 
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "sortedintersect/intersect.pyx":62
+  /* "sortedintersect/intersect.pyx":75
  *                 self.data.append(item[2])
  * 
  *     cpdef search_point(self, int pos):             # <<<<<<<<<<<<<<
@@ -3131,7 +3145,7 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_7search_point(PyObj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("search_point (wrapper)", 0);
   assert(__pyx_arg_pos); {
-    __pyx_v_pos = __Pyx_PyInt_As_int(__pyx_arg_pos); if (unlikely((__pyx_v_pos == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L3_error)
+    __pyx_v_pos = __Pyx_PyInt_As_int(__pyx_arg_pos); if (unlikely((__pyx_v_pos == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 75, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3155,7 +3169,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_6search_point(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("search_point", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_search_point(__pyx_v_self, __pyx_v_pos, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_search_point(__pyx_v_self, __pyx_v_pos, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3172,11 +3186,11 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_6search_point(struc
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":99
+/* "sortedintersect/intersect.pyx":112
  * 
  * 
  *     cpdef search_interval(self, int start, int end):             # <<<<<<<<<<<<<<
- * 
+ *         assert end >= start
  *         cdef uint64_t i = self.index
  */
 
@@ -3211,13 +3225,13 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_search_interval); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_search_interval); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_15sortedintersect_9intersect_4ISet_9search_interval)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_end); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -3235,7 +3249,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3245,7 +3259,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3253,7 +3267,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 99, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 112, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -3264,7 +3278,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -3287,9 +3301,25 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     #endif
   }
 
-  /* "sortedintersect/intersect.pyx":101
- *     cpdef search_interval(self, int start, int end):
+  /* "sortedintersect/intersect.pyx":113
  * 
+ *     cpdef search_interval(self, int start, int end):
+ *         assert end >= start             # <<<<<<<<<<<<<<
+ *         cdef uint64_t i = self.index
+ *         if self.starts.size() == 0 or i >= self.starts.size():
+ */
+  #ifndef CYTHON_WITHOUT_ASSERTIONS
+  if (unlikely(!Py_OptimizeFlag)) {
+    if (unlikely(!((__pyx_v_end >= __pyx_v_start) != 0))) {
+      PyErr_SetNone(PyExc_AssertionError);
+      __PYX_ERR(0, 113, __pyx_L1_error)
+    }
+  }
+  #endif
+
+  /* "sortedintersect/intersect.pyx":114
+ *     cpdef search_interval(self, int start, int end):
+ *         assert end >= start
  *         cdef uint64_t i = self.index             # <<<<<<<<<<<<<<
  *         if self.starts.size() == 0 or i >= self.starts.size():
  *             return False
@@ -3297,8 +3327,8 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_t_7 = __pyx_v_self->index;
   __pyx_v_i = __pyx_t_7;
 
-  /* "sortedintersect/intersect.pyx":102
- * 
+  /* "sortedintersect/intersect.pyx":115
+ *         assert end >= start
  *         cdef uint64_t i = self.index
  *         if self.starts.size() == 0 or i >= self.starts.size():             # <<<<<<<<<<<<<<
  *             return False
@@ -3315,7 +3345,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_9) {
 
-    /* "sortedintersect/intersect.pyx":103
+    /* "sortedintersect/intersect.pyx":116
  *         cdef uint64_t i = self.index
  *         if self.starts.size() == 0 or i >= self.starts.size():
  *             return False             # <<<<<<<<<<<<<<
@@ -3327,8 +3357,8 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "sortedintersect/intersect.pyx":102
- * 
+    /* "sortedintersect/intersect.pyx":115
+ *         assert end >= start
  *         cdef uint64_t i = self.index
  *         if self.starts.size() == 0 or i >= self.starts.size():             # <<<<<<<<<<<<<<
  *             return False
@@ -3336,7 +3366,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   }
 
-  /* "sortedintersect/intersect.pyx":105
+  /* "sortedintersect/intersect.pyx":118
  *             return False
  * 
  *         if start < self.last_q_start:             # <<<<<<<<<<<<<<
@@ -3346,14 +3376,14 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_t_9 = ((__pyx_v_start < __pyx_v_self->last_q_start) != 0);
   if (unlikely(__pyx_t_9)) {
 
-    /* "sortedintersect/intersect.pyx":106
+    /* "sortedintersect/intersect.pyx":119
  * 
  *         if start < self.last_q_start:
  *             raise ValueError(f'Search interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}')             # <<<<<<<<<<<<<<
  * 
  *         cdef bint passed = False
  */
-    __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_11 = 0;
     __pyx_t_12 = 127;
@@ -3361,7 +3391,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_t_11 += 16;
     __Pyx_GIVEREF(__pyx_kp_u_Search_interval);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Search_interval);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_11 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -3371,7 +3401,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_t_11 += 1;
     __Pyx_GIVEREF(__pyx_kp_u_);
     PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_end, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_11 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -3381,23 +3411,23 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_t_11 += 54;
     __Pyx_GIVEREF(__pyx_kp_u_is_not_in_sorted_order_last_que);
     PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_is_not_in_sorted_order_last_que);
-    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_q_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->last_q_start, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_11 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 5, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 6, __pyx_t_11, __pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 6, __pyx_t_11, __pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 106, __pyx_L1_error)
+    __PYX_ERR(0, 119, __pyx_L1_error)
 
-    /* "sortedintersect/intersect.pyx":105
+    /* "sortedintersect/intersect.pyx":118
  *             return False
  * 
  *         if start < self.last_q_start:             # <<<<<<<<<<<<<<
@@ -3406,7 +3436,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   }
 
-  /* "sortedintersect/intersect.pyx":108
+  /* "sortedintersect/intersect.pyx":121
  *             raise ValueError(f'Search interval {start}-{end} is not in sorted order, last query interval seen was {self.last_q_start}')
  * 
  *         cdef bint passed = False             # <<<<<<<<<<<<<<
@@ -3415,7 +3445,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   __pyx_v_passed = 0;
 
-  /* "sortedintersect/intersect.pyx":109
+  /* "sortedintersect/intersect.pyx":122
  * 
  *         cdef bint passed = False
  *         self.last_q_start = start             # <<<<<<<<<<<<<<
@@ -3424,7 +3454,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   __pyx_v_self->last_q_start = __pyx_v_start;
 
-  /* "sortedintersect/intersect.pyx":110
+  /* "sortedintersect/intersect.pyx":123
  *         cdef bint passed = False
  *         self.last_q_start = start
  *         self.current_r_start = self.starts[i]             # <<<<<<<<<<<<<<
@@ -3433,7 +3463,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   __pyx_v_self->current_r_start = (__pyx_v_self->starts[__pyx_v_i]);
 
-  /* "sortedintersect/intersect.pyx":111
+  /* "sortedintersect/intersect.pyx":124
  *         self.last_q_start = start
  *         self.current_r_start = self.starts[i]
  *         self.current_r_end = self.ends[i]             # <<<<<<<<<<<<<<
@@ -3442,7 +3472,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   __pyx_v_self->current_r_end = (__pyx_v_self->ends[__pyx_v_i]);
 
-  /* "sortedintersect/intersect.pyx":112
+  /* "sortedintersect/intersect.pyx":125
  *         self.current_r_start = self.starts[i]
  *         self.current_r_end = self.ends[i]
  *         if start > self.current_r_end:             # <<<<<<<<<<<<<<
@@ -3452,7 +3482,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_t_9 = ((__pyx_v_start > __pyx_v_self->current_r_end) != 0);
   if (__pyx_t_9) {
 
-    /* "sortedintersect/intersect.pyx":113
+    /* "sortedintersect/intersect.pyx":126
  *         self.current_r_end = self.ends[i]
  *         if start > self.current_r_end:
  *             i = self.index + 1             # <<<<<<<<<<<<<<
@@ -3461,7 +3491,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
     __pyx_v_i = (__pyx_v_self->index + 1);
 
-    /* "sortedintersect/intersect.pyx":114
+    /* "sortedintersect/intersect.pyx":127
  *         if start > self.current_r_end:
  *             i = self.index + 1
  *             while i < self.starts.size():             # <<<<<<<<<<<<<<
@@ -3472,7 +3502,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
       __pyx_t_9 = ((__pyx_v_i < __pyx_v_self->starts.size()) != 0);
       if (!__pyx_t_9) break;
 
-      /* "sortedintersect/intersect.pyx":115
+      /* "sortedintersect/intersect.pyx":128
  *             i = self.index + 1
  *             while i < self.starts.size():
  *                 self.current_r_start = self.starts[i]             # <<<<<<<<<<<<<<
@@ -3481,7 +3511,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
       __pyx_v_self->current_r_start = (__pyx_v_self->starts[__pyx_v_i]);
 
-      /* "sortedintersect/intersect.pyx":116
+      /* "sortedintersect/intersect.pyx":129
  *             while i < self.starts.size():
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]             # <<<<<<<<<<<<<<
@@ -3490,7 +3520,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
       __pyx_v_self->current_r_end = (__pyx_v_self->ends[__pyx_v_i]);
 
-      /* "sortedintersect/intersect.pyx":117
+      /* "sortedintersect/intersect.pyx":130
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]
  *                 if is_overlapping(start, end, self.current_r_start, self.current_r_end):             # <<<<<<<<<<<<<<
@@ -3500,7 +3530,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
       __pyx_t_9 = (__pyx_f_15sortedintersect_9intersect_is_overlapping(__pyx_v_start, __pyx_v_end, __pyx_v_self->current_r_start, __pyx_v_self->current_r_end) != 0);
       if (__pyx_t_9) {
 
-        /* "sortedintersect/intersect.pyx":118
+        /* "sortedintersect/intersect.pyx":131
  *                 self.current_r_end = self.ends[i]
  *                 if is_overlapping(start, end, self.current_r_start, self.current_r_end):
  *                     passed = True             # <<<<<<<<<<<<<<
@@ -3509,7 +3539,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
         __pyx_v_passed = 1;
 
-        /* "sortedintersect/intersect.pyx":119
+        /* "sortedintersect/intersect.pyx":132
  *                 if is_overlapping(start, end, self.current_r_start, self.current_r_end):
  *                     passed = True
  *                     break             # <<<<<<<<<<<<<<
@@ -3518,7 +3548,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
         goto __pyx_L9_break;
 
-        /* "sortedintersect/intersect.pyx":117
+        /* "sortedintersect/intersect.pyx":130
  *                 self.current_r_start = self.starts[i]
  *                 self.current_r_end = self.ends[i]
  *                 if is_overlapping(start, end, self.current_r_start, self.current_r_end):             # <<<<<<<<<<<<<<
@@ -3527,7 +3557,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
       }
 
-      /* "sortedintersect/intersect.pyx":120
+      /* "sortedintersect/intersect.pyx":133
  *                     passed = True
  *                     break
  *                 elif self.current_r_start > start:             # <<<<<<<<<<<<<<
@@ -3537,7 +3567,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
       __pyx_t_9 = ((__pyx_v_self->current_r_start > __pyx_v_start) != 0);
       if (__pyx_t_9) {
 
-        /* "sortedintersect/intersect.pyx":121
+        /* "sortedintersect/intersect.pyx":134
  *                     break
  *                 elif self.current_r_start > start:
  *                     break             # <<<<<<<<<<<<<<
@@ -3546,7 +3576,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
         goto __pyx_L9_break;
 
-        /* "sortedintersect/intersect.pyx":120
+        /* "sortedintersect/intersect.pyx":133
  *                     passed = True
  *                     break
  *                 elif self.current_r_start > start:             # <<<<<<<<<<<<<<
@@ -3555,7 +3585,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
       }
 
-      /* "sortedintersect/intersect.pyx":122
+      /* "sortedintersect/intersect.pyx":135
  *                 elif self.current_r_start > start:
  *                     break
  *                 i += 1             # <<<<<<<<<<<<<<
@@ -3566,7 +3596,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     }
     __pyx_L9_break:;
 
-    /* "sortedintersect/intersect.pyx":123
+    /* "sortedintersect/intersect.pyx":136
  *                     break
  *                 i += 1
  *             self.index = i             # <<<<<<<<<<<<<<
@@ -3575,7 +3605,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
     __pyx_v_self->index = __pyx_v_i;
 
-    /* "sortedintersect/intersect.pyx":112
+    /* "sortedintersect/intersect.pyx":125
  *         self.current_r_start = self.starts[i]
  *         self.current_r_end = self.ends[i]
  *         if start > self.current_r_end:             # <<<<<<<<<<<<<<
@@ -3585,7 +3615,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     goto __pyx_L7;
   }
 
-  /* "sortedintersect/intersect.pyx":125
+  /* "sortedintersect/intersect.pyx":138
  *             self.index = i
  * 
  *         elif is_overlapping(start, end, self.current_r_start, self.current_r_end):             # <<<<<<<<<<<<<<
@@ -3595,7 +3625,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_t_9 = (__pyx_f_15sortedintersect_9intersect_is_overlapping(__pyx_v_start, __pyx_v_end, __pyx_v_self->current_r_start, __pyx_v_self->current_r_end) != 0);
   if (__pyx_t_9) {
 
-    /* "sortedintersect/intersect.pyx":126
+    /* "sortedintersect/intersect.pyx":139
  * 
  *         elif is_overlapping(start, end, self.current_r_start, self.current_r_end):
  *             passed = True             # <<<<<<<<<<<<<<
@@ -3604,7 +3634,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
     __pyx_v_passed = 1;
 
-    /* "sortedintersect/intersect.pyx":125
+    /* "sortedintersect/intersect.pyx":138
  *             self.index = i
  * 
  *         elif is_overlapping(start, end, self.current_r_start, self.current_r_end):             # <<<<<<<<<<<<<<
@@ -3614,7 +3644,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   }
   __pyx_L7:;
 
-  /* "sortedintersect/intersect.pyx":128
+  /* "sortedintersect/intersect.pyx":141
  *             passed = True
  * 
  *         if passed:             # <<<<<<<<<<<<<<
@@ -3624,7 +3654,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_t_9 = (__pyx_v_passed != 0);
   if (__pyx_t_9) {
 
-    /* "sortedintersect/intersect.pyx":129
+    /* "sortedintersect/intersect.pyx":142
  * 
  *         if passed:
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -3634,7 +3664,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_t_9 = (__pyx_v_self->add_data != 0);
     if (__pyx_t_9) {
 
-      /* "sortedintersect/intersect.pyx":130
+      /* "sortedintersect/intersect.pyx":143
  *         if passed:
  *             if self.add_data:
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]             # <<<<<<<<<<<<<<
@@ -3642,13 +3672,13 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  *         return False
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_self->data, __pyx_v_self->index, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 130, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_self->data, __pyx_v_self->index, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 130, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
@@ -3663,7 +3693,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
       __pyx_t_8 = 0;
       goto __pyx_L0;
 
-      /* "sortedintersect/intersect.pyx":129
+      /* "sortedintersect/intersect.pyx":142
  * 
  *         if passed:
  *             if self.add_data:             # <<<<<<<<<<<<<<
@@ -3672,7 +3702,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
     }
 
-    /* "sortedintersect/intersect.pyx":131
+    /* "sortedintersect/intersect.pyx":144
  *             if self.add_data:
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]
  *             return self.current_r_start, self.current_r_end             # <<<<<<<<<<<<<<
@@ -3680,11 +3710,11 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_start); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->current_r_end); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8);
@@ -3696,7 +3726,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "sortedintersect/intersect.pyx":128
+    /* "sortedintersect/intersect.pyx":141
  *             passed = True
  * 
  *         if passed:             # <<<<<<<<<<<<<<
@@ -3705,7 +3735,7 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
  */
   }
 
-  /* "sortedintersect/intersect.pyx":132
+  /* "sortedintersect/intersect.pyx":145
  *                 return self.current_r_start, self.current_r_end, self.data[self.index]
  *             return self.current_r_start, self.current_r_end
  *         return False             # <<<<<<<<<<<<<<
@@ -3717,11 +3747,11 @@ static PyObject *__pyx_f_15sortedintersect_9intersect_4ISet_search_interval(stru
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "sortedintersect/intersect.pyx":99
+  /* "sortedintersect/intersect.pyx":112
  * 
  * 
  *     cpdef search_interval(self, int start, int end):             # <<<<<<<<<<<<<<
- * 
+ *         assert end >= start
  *         cdef uint64_t i = self.index
  */
 
@@ -3776,11 +3806,11 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_9search_interval(Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_end)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("search_interval", 1, 2, 2, 1); __PYX_ERR(0, 99, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("search_interval", 1, 2, 2, 1); __PYX_ERR(0, 112, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "search_interval") < 0)) __PYX_ERR(0, 99, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "search_interval") < 0)) __PYX_ERR(0, 112, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3788,12 +3818,12 @@ static PyObject *__pyx_pw_15sortedintersect_9intersect_4ISet_9search_interval(Py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_start = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_start == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L3_error)
-    __pyx_v_end = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_end == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L3_error)
+    __pyx_v_start = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_start == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L3_error)
+    __pyx_v_end = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_end == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("search_interval", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 99, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("search_interval", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 112, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sortedintersect.intersect.ISet.search_interval", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3815,7 +3845,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_8search_interval(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("search_interval", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_search_interval(__pyx_v_self, __pyx_v_start, __pyx_v_end, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_15sortedintersect_9intersect_4ISet_search_interval(__pyx_v_self, __pyx_v_start, __pyx_v_end, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4198,7 +4228,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_4ISet_12__setstate_cython
   return __pyx_r;
 }
 
-/* "sortedintersect/intersect.pyx":135
+/* "sortedintersect/intersect.pyx":148
  * 
  * 
  * cpdef ISet IntervalSet(with_data):             # <<<<<<<<<<<<<<
@@ -4216,19 +4246,19 @@ static struct __pyx_obj_15sortedintersect_9intersect_ISet *__pyx_f_15sortedinter
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("IntervalSet", 0);
 
-  /* "sortedintersect/intersect.pyx":137
+  /* "sortedintersect/intersect.pyx":150
  * cpdef ISet IntervalSet(with_data):
  *     """Returns a python friendly IntervalSet for searching with sorted query intervals / points"""
  *     return ISet(with_data)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_15sortedintersect_9intersect_ISet), __pyx_v_with_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_15sortedintersect_9intersect_ISet), __pyx_v_with_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((struct __pyx_obj_15sortedintersect_9intersect_ISet *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sortedintersect/intersect.pyx":135
+  /* "sortedintersect/intersect.pyx":148
  * 
  * 
  * cpdef ISet IntervalSet(with_data):             # <<<<<<<<<<<<<<
@@ -4270,7 +4300,7 @@ static PyObject *__pyx_pf_15sortedintersect_9intersect_IntervalSet(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("IntervalSet", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_15sortedintersect_9intersect_IntervalSet(__pyx_v_with_data, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_15sortedintersect_9intersect_IntervalSet(__pyx_v_with_data, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5162,7 +5192,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 54, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 61, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -5241,16 +5271,16 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_15sortedintersect_9intersect_ISet.add_from_iter = (PyObject *(*)(struct __pyx_obj_15sortedintersect_9intersect_ISet *, PyObject *, int __pyx_skip_dispatch))__pyx_f_15sortedintersect_9intersect_4ISet_add_from_iter;
   __pyx_vtable_15sortedintersect_9intersect_ISet.search_point = (PyObject *(*)(struct __pyx_obj_15sortedintersect_9intersect_ISet *, int, int __pyx_skip_dispatch))__pyx_f_15sortedintersect_9intersect_4ISet_search_point;
   __pyx_vtable_15sortedintersect_9intersect_ISet.search_interval = (PyObject *(*)(struct __pyx_obj_15sortedintersect_9intersect_ISet *, int, int, int __pyx_skip_dispatch))__pyx_f_15sortedintersect_9intersect_4ISet_search_interval;
-  if (PyType_Ready(&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_15sortedintersect_9intersect_ISet.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_15sortedintersect_9intersect_ISet.tp_dictoffset && __pyx_type_15sortedintersect_9intersect_ISet.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_15sortedintersect_9intersect_ISet.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_15sortedintersect_9intersect_ISet.tp_dict, __pyx_vtabptr_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_ISet, (PyObject *)&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_15sortedintersect_9intersect_ISet.tp_dict, __pyx_vtabptr_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_ISet, (PyObject *)&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_15sortedintersect_9intersect_ISet) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
   __pyx_ptype_15sortedintersect_9intersect_ISet = &__pyx_type_15sortedintersect_9intersect_ISet;
   __Pyx_RefNannyFinishContext();
   return 0;

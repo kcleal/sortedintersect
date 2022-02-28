@@ -59,6 +59,9 @@ class TestConstruct(unittest.TestCase):
         assert not itv.search_interval(5, 6)
         assert itv.search_interval(6, 9) == (7, 8, 'b')
         assert not itv.search_interval(9, 10)
+        itv.add(20, 30, 'v')
+        assert itv.search_interval(10, 21) == (20, 30, 'v')
+
 
     def test_query_interval_not_sorted(self):
         itv = IntervalSet(False)
