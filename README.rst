@@ -26,7 +26,7 @@ Overview
 
 Common usage is to check if a point overlaps a reference set:
 
-.. code-block:: python
+.. code-block::
 
     from sortedintersect import IntervalSet
 
@@ -47,7 +47,7 @@ Common usage is to check if a point overlaps a reference set:
 
 Note, both reference and query intervals must be added and queried in sorted order otherwise a ValueError will be raised:
 
-.. code-block:: python
+.. code-block::
 
     # intervals without data
     itv = IntervalSet(False)
@@ -62,7 +62,7 @@ Note, both reference and query intervals must be added and queried in sorted ord
 
 Intervals can also be queried:
 
-.. code-block:: python
+.. code-block::
 
     # intervals without data
     itv = IntervalSet(False)
