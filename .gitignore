@@ -3,3 +3,10 @@
 ./sortedintersect.egg-info
 ./.gitignore
 ./.*
+/sortedintersect/intersect.cpp
+/sortedintersect/*.so
+/sortedintersect/sintersect.cpp
+/tests/a.bed
+/tests/b.bed
+/tests/chr1_reads.bed
+/tests/chr1_ucsc_genes.bed

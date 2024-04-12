@@ -3,23 +3,20 @@ from setuptools import setup, find_packages
 
 ext_modules = list()
 
-ext_modules.append(Extension("sortedintersect.intersect",
-                             ["sortedintersect/intersect.pyx"],
-                             # extra_compile_args=extras,
+ext_modules.append(Extension("sortedintersect.sintersect",
+                             ["sortedintersect/sintersect.pyx"],
                              language="c++",
                              ))
 
 
-setup(version='0.3.0',
+setup(version='0.4.0',
       name='sortedintersect',
       description="Interval intersection for sorted query and target intervals",
-      long_description=open('README.rst').read(),
+      long_description=open('README.md').read(),
       author="Kez Cleal",
       author_email="clealk@cardiff.ac.uk",
       packages=find_packages(),
       setup_requires=['cython'],
       install_requires=['cython'],
       ext_modules=ext_modules,
-      test_suite='nose.collector',
-      tests_require='nose',
 )

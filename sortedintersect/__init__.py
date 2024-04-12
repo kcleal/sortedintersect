@@ -1,2 +1,4 @@
-from sortedintersect.intersect import *
+from sortedintersect.sintersect import (
+    IntervalSet
+)
 
