@@ -6,10 +6,11 @@ ext_modules = list()
 ext_modules.append(Extension("sortedintersect.sintersect",
                              ["sortedintersect/sintersect.pyx"],
                              language="c++",
+                             extra_compile_args=["-std=c++17"]
                              ))
 
 
-setup(version='0.4.0',
+setup(version='0.4.1',
       name='sortedintersect',
       description="Interval intersection for sorted query and target intervals",
       author="Kez Cleal",

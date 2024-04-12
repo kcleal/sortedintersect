@@ -1,7 +1,8 @@
-#cython: language_level=3, boundscheck=False, wraparound=False
+#cython: language_level=3, boundscheck=False, wraparound=False, nonecheck=False
 #distutils: language=c++
 from libcpp.vector cimport vector
 from libcpp.algorithm cimport upper_bound
+from libc.stdlib cimport abs as c_abs
 
 __all__ = ["IntervalSet"]
 
@@ -77,7 +78,6 @@ cdef class IntervalSet:
 
     cdef void _line_scan(self, int pos):
         cdef size_t i
-        before = self.index
         if pos < self.last_q_start:
             i = self.index
             while i > 0 and pos <= self.starts[i]:
@@ -100,7 +100,12 @@ cdef class IntervalSet:
             self.index = i
 
     cdef void _binary_search(self, int pos):
-        lower = upper_bound(self.starts.begin(), self.starts.end(), pos)
+        cdef vector[int].iterator lower
+        if self.last_q_start < pos:
+            lower = upper_bound(self.starts.begin() + self.index, self.starts.end(), pos)
+        else:
+            lower = upper_bound(self.starts.begin(), self.starts.begin() + self.index, pos)
+        # lower = upper_bound(self.starts.begin(), self.starts.end(), pos)
         self.index = lower - self.starts.begin()
         self.index = self.index - 1 if self.index else self.index
         while True:
@@ -113,24 +118,12 @@ cdef class IntervalSet:
                 if self.index < self.ends.size() - 1:
                     self.index += 1
                 break
-
-        # if pos >= self.last_q_start:
-        #     while True:
-        #         if self.ends[self.index].covered_end >= pos:
-        #             if self.index > 0:
-        #                 self.index -= 1
-        #             else:
-        #                 break
-        #         else:
-        #             if self.index < self.ends.size() - 1:
-        #                 self.index += 1
-        #             break
     cdef void _set_reference_index(self, int pos):
         # self._binary_search(pos)
         # if self.query_sorted:
         #     self._line_scan(pos)
         # else:
-        if abs(pos - self.last_q_start) > self.distance_threshold:
+        if c_abs(pos - self.last_q_start) > self.distance_threshold:
             self._binary_search(pos)
         else:
             self._line_scan(pos)
@@ -154,7 +147,6 @@ cdef class IntervalSet:
                         found.append((self.starts[i], self.ends[i].end, self.data[i]))
                     else:
                         found.append((self.starts[i], self.ends[i].end))
-                    # found.append(i)
                     continue
                 elif pos < self.starts[i] or pos > self.ends[i].covered_end:
                     break
@@ -176,16 +168,17 @@ cdef class IntervalSet:
             return False if self.bool_only else []
         self._set_reference_index(start)
         self.last_q_start = start
-        found = []
-        for i in range(self.index, size):
-            if is_overlapping(start, end, self.starts[i], self.ends[i].end):
-                if self.bool_only:
-                    return True
-                if self.add_data:
-                    found.append((self.starts[i], self.ends[i].end, self.data[i]))
-                else:
-                    found.append((self.starts[i], self.ends[i].end))
-                continue
-            elif start < self.starts[i] or start > self.ends[i].covered_end:
-                break
-        return False if self.bool_only else found
+        if not self.bool_only:
+            found = []
+            for i in range(self.index, size):
+                if is_overlapping(start, end, self.starts[i], self.ends[i].end):
+                    if self.add_data:
+                        found.append((self.starts[i], self.ends[i].end, self.data[i]))
+                    else:
+                        found.append((self.starts[i], self.ends[i].end))
+                    continue
+                elif start < self.starts[i] or start > self.ends[i].covered_end:
+                    break
+            return found
+        else:
+            return False if self.index >= size else is_overlapping(start, end, self.starts[i], self.ends[i].end)

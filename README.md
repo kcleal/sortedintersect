@@ -84,30 +84,30 @@ reads+genes - reads from a 2mb region converted to bed format, then intersected 
 
 | library         |   time (s) |   intersections | test        | shuffle   |
 |:----------------|-----------:|----------------:|:------------|:----------|
-| sortedintersect |  0.0116289 |            2947 | random1     | True      |
-| quicksect       |  0.0148401 |            2947 | random1     | True      |
-| cgranges        |  0.0177381 |            2878 | random1     | True      |
-| ncls            |  0.026356  |            2947 | random1     | True      |
-| sortedintersect |  0.713765  |         8001594 | random2     | True      |
-| quicksect       |  1.28989   |         8001594 | random2     | True      |
-| cgranges        |  1.01043   |         7993517 | random2     | True      |
-| ncls            |  1.36818   |         8001594 | random2     | True      |
-| sortedintersect |  0.112607  |          320618 | reads+genes | True      |
-| quicksect       |  0.127229  |          320618 | reads+genes | True      |
-| cgranges        |  0.160962  |          320610 | reads+genes | True      |
-| ncls            |  0.237285  |          320618 | reads+genes | True      |
-| sortedintersect |  0.0111213 |            2916 | random1     | False     |
-| quicksect       |  0.0144    |            2916 | random1     | False     |
-| cgranges        |  0.0177028 |            2847 | random1     | False     |
-| ncls            |  0.0270391 |            2916 | random1     | False     |
-| sortedintersect |  0.59601   |         8001594 | random2     | False     |
-| quicksect       |  0.658922  |         8001594 | random2     | False     |
-| cgranges        |  0.879546  |         7993517 | random2     | False     |
-| ncls            |  1.15896   |         8001594 | random2     | False     |
-| sortedintersect |  0.100809  |          320618 | reads+genes | False     |
-| quicksect       |  0.125237  |          320618 | reads+genes | False     |
-| cgranges        |  0.153327  |          320610 | reads+genes | False     |
-| ncls            |  0.230667  |          320618 | reads+genes | False     |
+| sortedintersect |  0.0116878 |            2947 | random1     | True      |
+| quicksect       |  0.014946  |            2947 | random1     | True      |
+| cgranges        |  0.0177999 |            2878 | random1     | True      |
+| ncls            |  0.027061  |            2947 | random1     | True      |
+| sortedintersect |  0.740114  |         8001594 | random2     | True      |
+| quicksect       |  1.28441   |         8001594 | random2     | True      |
+| cgranges        |  1.00505   |         7993517 | random2     | True      |
+| ncls            |  1.352     |         8001594 | random2     | True      |
+| sortedintersect |  0.111097  |          320618 | reads+genes | True      |
+| quicksect       |  0.125926  |          320618 | reads+genes | True      |
+| cgranges        |  0.15797   |          320610 | reads+genes | True      |
+| ncls            |  0.235777  |          320618 | reads+genes | True      |
+| sortedintersect |  0.011116  |            2916 | random1     | False     |
+| quicksect       |  0.0142658 |            2916 | random1     | False     |
+| cgranges        |  0.0173151 |            2847 | random1     | False     |
+| ncls            |  0.0269301 |            2916 | random1     | False     |
+| sortedintersect |  0.589765  |         8001594 | random2     | False     |
+| quicksect       |  0.644668  |         8001594 | random2     | False     |
+| cgranges        |  0.860898  |         7993517 | random2     | False     |
+| ncls            |  1.15578   |         8001594 | random2     | False     |
+| sortedintersect |  0.0999217 |          320618 | reads+genes | False     |
+| quicksect       |  0.123064  |          320618 | reads+genes | False     |
+| cgranges        |  0.14915   |          320610 | reads+genes | False     |
+| ncls            |  0.230041  |          320618 | reads+genes | False     |
 
 shuffle here means that the query intervals have been shuffled.
 

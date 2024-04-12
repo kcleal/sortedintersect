@@ -4,14 +4,14 @@
 
 
 bool is_overlapping(int x1, int x2, int y1, int y2) {
-    return std::max(x1, y1) <= min(x2, y2)
+    return std::max(x1, y1) <= std::min(x2, y2);
 }
 
 
 struct Interval {
-    int end
-    int covered_end
-}
+    int end;
+    int covered_end;
+};
 
 
 
@@ -23,11 +23,11 @@ class SIntersect {
     std::vector<int> starts;
     std::vector<Interval> ends;
     int last_r_start, last_q_start, current_r_end, current_r_start, distance_threshold;
-    size_t index
+    size_t index;
 
     void add(int start, int end) {
         starts.push_back(start);
-        ends.emplace_back({end, current_r_end});
+        ends.emplace_back() = {end, current_r_end};
         current_r_end = std::max(current_r_end, end);
         last_r_start = start;
     }
@@ -82,8 +82,8 @@ class SIntersect {
         }
     }
 
-    void _set_reference_index() {
-        if astd::bs(pos - last_q_start > distance_threshold) {
+    void _set_reference_index(int pos) {
+        if (std::abs(pos - last_q_start) > distance_threshold) {
             _binary_search(pos);
         } else {
             _line_scan(pos);
