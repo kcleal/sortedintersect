@@ -181,4 +181,4 @@ cdef class IntervalSet:
                     break
             return found
         else:
-            return False if self.index >= size else is_overlapping(start, end, self.starts[i], self.ends[i].end)
+            return False if self.index >= size else is_overlapping(start, end, self.starts[self.index], self.ends[self.index].end)
