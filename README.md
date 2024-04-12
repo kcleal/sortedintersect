@@ -8,16 +8,16 @@ Installation
 Download from pypi:
 
 ```
-    pip install sortedintersect
+pip install sortedintersect
 ```
     
 
 To build from source:
 
 ```
-    git clone https://github.com/kcleal/sortedintersect
-    cd sortedintersect
-    pip install .
+git clone https://github.com/kcleal/sortedintersect
+cd sortedintersect
+pip install .
 ```
 
 Overview
@@ -26,39 +26,39 @@ Overview
 Common usage is to check if a point or interval overlaps a reference set:
 
 ```python
-    from sortedintersect import IntervalSet
-    
-    # intervals without data
-    itv = IntervalSet()
-    itv.add(0, 10)
-    itv.search_point(1)
-    # >>> [(0, 10)]
-    
-    # Return a boolean only (faster)
-    itv = IntervalSet(bool_only=True)
-    itv.add(0, 10)
-    itv.search_point(1)
-    # >>> True
-    
-    # search intervals with additional data
-    itv = IntervalSet(with_data=True)
-    itv.add(0, 10, 'interval1')
-    itv.add(20, 30, {'a': 1})
-    itv.search_interval(1, 2)
-    # >>> [(0, 10, 'interval1')]
-    itv.search_point(20)
-    # >>> [(20, 30, {'a': 1})]
-    
-    
-    itv = IntervalSet()
-    itv.add(-1, 1)
-    itv.add(2, 4)
-    itv.add(9, 10)
-    assert tuple(itv.search_point(10)) == ((9, 10),)
-    assert tuple(itv.search_point(0)) == ((-1, 1),)
+from sortedintersect import IntervalSet
 
-    # set distance threshold
-    itv = IntervalSet(distance_threshold=500_000)
+# intervals without data
+itv = IntervalSet()
+itv.add(0, 10)
+itv.search_point(1)
+# >>> [(0, 10)]
+
+# Return a boolean only (faster)
+itv = IntervalSet(bool_only=True)
+itv.add(0, 10)
+itv.search_point(1)
+# >>> True
+
+# search intervals with additional data
+itv = IntervalSet(with_data=True)
+itv.add(0, 10, 'interval1')
+itv.add(20, 30, {'a': 1})
+itv.search_interval(1, 2)
+# >>> [(0, 10, 'interval1')]
+itv.search_point(20)
+# >>> [(20, 30, {'a': 1})]
+
+
+itv = IntervalSet()
+itv.add(-1, 1)
+itv.add(2, 4)
+itv.add(9, 10)
+assert tuple(itv.search_point(10)) == ((9, 10),)
+assert tuple(itv.search_point(0)) == ((-1, 1),)
+
+# set distance threshold
+itv = IntervalSet(distance_threshold=500_000)
 ```
 
 
