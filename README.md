@@ -23,7 +23,7 @@ pip install .
 Overview
 --------
 
-Common usage is to check if a point or interval overlaps a reference set:
+Check if a point or interval overlaps a reference interval set:
 
 ```python
 from sortedintersect import IntervalSet
@@ -57,20 +57,18 @@ itv.add(9, 10)
 assert tuple(itv.search_point(10)) == ((9, 10),)
 assert tuple(itv.search_point(0)) == ((-1, 1),)
 
-# set distance threshold
+# set custom distance threshold
 itv = IntervalSet(distance_threshold=500_000)
 ```
 
 
-An interval tree is often used for this purpose relying on binary search in log(N) time.
+An interval tree is often used for this purpose relying on binary search.
 However, if the reference intervals are sorted ahead of time, and query intervals 
-are roughly sorted, then a simple plane-sweep algorithm can be used, relying on a linear search instead.
-This situation arises when processing a sorted alignment or vcf file and checking against a sorted reference
-interval set, for example. Sorted-intersect uses a simple heuristic (a distance measure) to decide when to use
-binary-search adn when to use a plane-sweep.
+are roughly sorted, then a simple linear search can be used for a small speedup.
+Sorted-intersect uses a simple heuristic (a distance measure) to decide when to use
+binary-search and when to use a plane-sweep.
 When a query-point is tested, its position is recorded. When a subsequent query point is tested, if the distance to
 the previous point is below a threshold, then a plane sweep is used on the reference intervals instead of a binary search.
-
 
 
 Benchmarks
@@ -111,6 +109,7 @@ reads+genes - reads from a 2mb region converted to bed format, then intersected 
 | cgranges        |  0.153327  |          320610 | reads+genes | False     |
 | ncls            |  0.230667  |          320618 | reads+genes | False     |
 
+shuffle here means that the query intervals have been shuffled.
 
 Limitations
 -----------
