@@ -9,7 +9,6 @@ ext_modules.append(Extension("sortedintersect.sintersect",
                              extra_compile_args=["-std=c++17"]
                              ))
 
-
 setup(version='0.4.1',
       name='sortedintersect',
       description="Interval intersection for sorted query and target intervals",
