@@ -1,7 +1,7 @@
 #cython: language_level=3, boundscheck=False, wraparound=False, nonecheck=False
 #distutils: language=c++
 from libcpp.vector cimport vector
-from libcpp.algorithm cimport upper_bound
+from libcpp.algorithm cimport lower_bound
 from libc.stdlib cimport abs as c_abs
 
 __all__ = ["IntervalSet"]
@@ -102,12 +102,10 @@ cdef class IntervalSet:
     cdef void _binary_search(self, int pos):
         cdef vector[int].iterator lower
         if self.last_q_start < pos:
-            lower = upper_bound(self.starts.begin() + self.index, self.starts.end(), pos)
+            lower = lower_bound(self.starts.begin() + self.index, self.starts.end(), pos)
         else:
-            lower = upper_bound(self.starts.begin(), self.starts.begin() + self.index, pos)
-        # lower = upper_bound(self.starts.begin(), self.starts.end(), pos)
+            lower = lower_bound(self.starts.begin(), self.starts.begin() + self.index, pos)
         self.index = lower - self.starts.begin()
-        self.index = self.index - 1 if self.index else self.index
         while True:
             if self.ends[self.index].covered_end >= pos:
                 if self.index > 0:

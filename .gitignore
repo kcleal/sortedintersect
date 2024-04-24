@@ -10,3 +10,7 @@
 /tests/b.bed
 /tests/chr1_reads.bed
 /tests/chr1_ucsc_genes.bed
+/tests/run-cpp-libs
+/tests/run-cpp-libs.dSYM/
+/tests/AIList.o
+/tests/bench.o
