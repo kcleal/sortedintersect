@@ -20,7 +20,7 @@ cdef class IntervalSet:
     """An interval set for searching with sorted reference intervals and optionally sorted query points/intervals
 
     Reference intervals must be added in sorted order
-    If query points are not sorted, a binary search is used, otherwise a lineary search is used
+    If query points are not sorted, a binary search is used, otherwise a linear search is used
 
     :param with_data: Whether to record additional data along with an interval
     :type with_data: bool
@@ -44,9 +44,24 @@ cdef class IntervalSet:
         self.current_r_end = 0
         self.index = 0
         self.distance_threshold = distance_threshold
+
+    def __len__(self):
+        return self.starts.size()
+
     def set_distance_threshold(self, threshold):
         self.distance_threshold = threshold
+
     cpdef add(self, int start, int end, value=None):
+        """Add an interval. A value can also be accepted if with_data=True
+        Input intervals must be added in sorted order
+        
+        :param start: The start of the interval
+        :type start: int
+        :param end: The start of the interval
+        :type end: int
+        :param value: Any associated value
+        :type value: object
+        """
         if end < start:
             raise ValueError("End less than start")
         if start < self.last_r_start:
@@ -59,6 +74,12 @@ cdef class IntervalSet:
             self.data.append(value)
 
     cpdef add_from_iter(self, iterable):
+        """Add intervals from an iterable. A value can also be accepted if with_data=True
+        Input intervals must be added in sorted order
+        
+        :param iterable: Input intervals (start, end) or (start, end, value)
+        :type iterable: object
+        """
         cdef int start, end
         if hasattr(iterable, "len"):
             self.starts.reserve(len(iterable))
@@ -75,6 +96,19 @@ cdef class IntervalSet:
             self.last_r_start = start
             if self.add_data:
                 self.data.append(item[2])
+
+    def items(self):
+        """Returns an interator over the stored intervals
+        Yields:
+            (start, end)        # with_data=False
+            (start, end, data)  # with_data=True
+        """
+        cdef size_t i
+        for i in range(self.starts.size()):
+            if self.add_data:
+                yield self.starts[i], self.ends[i].end, self.data[i]
+            else:
+                yield self.starts[i], self.ends[i].end
 
     cdef void _line_scan(self, int pos):
         cdef size_t i
