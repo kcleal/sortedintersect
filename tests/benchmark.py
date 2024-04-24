@@ -35,7 +35,7 @@ def make_random_bedtools(shuffle):
     if not shuffle:
         queries.sort()
     intervals.sort()
-    subprocess.run("rm a.bed b.bed chr1.genome", shell=True)
+    # subprocess.run("rm a.bed b.bed chr1.genome", shell=True)
     return np.array(intervals), np.array(queries)
 
 
@@ -175,4 +175,5 @@ print(df.to_markdown(index=False))
 
 sns.set_palette("Set2")
 sns.catplot(kind='bar', data=df, x="shuffle", y="time (s)", hue="library", col="test", sharey=False)
-plt.savefig('benchmark.png')
+plt.show()
+# plt.savefig('benchmark.png')
