@@ -161,12 +161,12 @@ for shuffle in (True, False):
     df2["test"] = ["random2"] * len(df2)
     df2["shuffle"] = [shuffle] * len(df2)
     dfs.append(df2)
-    print("reads+genes")
-    intervals, queries = load_intervals(shuffle)
-    df2 = run_tools(intervals, queries, shuffle)
-    df2["test"] = ["reads+genes"] * len(df2)
-    df2["shuffle"] = [shuffle] * len(df2)
-    dfs.append(df2)
+    # print("reads+genes")
+    # intervals, queries = load_intervals(shuffle)
+    # df2 = run_tools(intervals, queries, shuffle)
+    # df2["test"] = ["reads+genes"] * len(df2)
+    # df2["shuffle"] = [shuffle] * len(df2)
+    # dfs.append(df2)
     print()
 
 

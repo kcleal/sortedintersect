@@ -1,8 +1,8 @@
 
 #include "IITree.hpp"
-//#include "iitii.hpp"
+#include "IntervalTree.h"
 #include "sintersect.hpp"
-//#include "AIList.h"
+
 
 #include <chrono>
 #include <iostream>
@@ -11,6 +11,7 @@
 #include <sstream>
 #include <random>
 #include <utility>
+#include <unordered_set>
 
 
 struct BedInterval {
@@ -62,12 +63,16 @@ void load_intervals(const std::string& intervals_file,
         std::shuffle(queries.begin(), queries.end(), g);
     } else {
         std::sort(queries.begin(), queries.end(), [](const BedInterval& a, const BedInterval& b) {
-            return a.start < b.start;
+            return (a.start < b.start);
+//            return (a.start < b.start && a.end < b.end);
+//            return (a.start < b.start || (a.start == b.start && a.end < b.end));
         });
     }
 
     std::sort(intervals.begin(), intervals.end(), [](const BedInterval& a, const BedInterval& b) {
-        return a.start < b.start;
+        return (a.start < b.start);
+//        return (a.start < b.start && a.end < b.end);
+//        return (a.start < b.start || (a.start == b.start && a.end < b.end));
     });
     std::cout << " N ref intervals " << intervals.size() << " N queries " << queries.size() << std::endl;
 
@@ -85,61 +90,115 @@ void run_tools(std::vector<BedInterval>& intervals, std::vector<BedInterval>& qu
     high_resolution_clock::time_point t1;
     microseconds ms_int;
     std::vector<size_t> a, b;
+    a.reserve(10000);
+    b.reserve(10000);
 
-    SIntersect<int, int> itv;
-
+    sortedIntersect::SIntersect<int, int> itv;
     std::cout << "\n SIntersect \n";
-    itv = SIntersect<int, int>();
+    itv = sortedIntersect::SIntersect<int, int>();
+    //                    branch_right
 
-    itv.add(1, 7, -1);
-    itv.add(6, 14, -1);
-    itv.add(7, 9, -1);
-    itv.add(11, 13, -1);
-    itv.add(11, 12, -1);
-    itv.add(12, 13, -1);
-    itv.add(12, 22, -1);
-    itv.add(14, 17, -1);
 
-    itv.index();
+//    itv.add(10, 20, -1);
+//    itv.add(11, 12, -1);
+//    itv.add(13, 14, -1);
+//    itv.add(15, 16, -1);
+//    itv.add(25, 29, -1);
+//    itv.index();
+//    itv.search_overlap(17, 30, a);
 
-    itv.search_overlap(8, 12, a);
-    for (auto item : a) {
-        std::cout << " - " << itv.starts[item] << " " << itv.ends[item].end << std::endl;
-    }
-    return;
+//    itv.add(1, 2, -1);
+//    itv.add(3, 8, -1);
+//    itv.add(5, 7, -1);
+//    itv.add(7, 20, -1);  // 7
+//    itv.add(9, 10, -1);  // 3
+//    itv.add(13, 15, -1); // 6
+//    itv.add(15, 16, -1); // 3
+//    itv.add(19, 30, -1); // -1
+//    itv.add(22, 24, -1);
+//    itv.add(24, 25, -1);
+//    itv.add(26, 28, -1);
+//    itv.add(32, 39, -1);
+//    itv.add(34, 36, -1);
+//    itv.add(38, 40, -1);
+//    itv.index();
+//    itv.search_overlap(17, 21, a);
 
-    std::cout << "\n SIntersect \n";
-    itv = SIntersect<int, int>();
 //    itv.add(0, 250000000, -1);
+//    itv.add(55, 1055, -1);
+//    itv.add(115, 1115, -1);
+//    itv.add(130, 1130, -1);
+//    itv.add(281, 1281, -1);
+//    itv.add(639, 1639, -1);
+//    itv.add(842, 1842, -1);
+//    itv.add(999, 1999, -1);
+//    itv.add(1094, 2094, -1);
+//    itv.add(1157, 2157, -1);
+//    itv.add(1161, 2161, -1);
+//    itv.add(1265, 2265, -1);
+//    itv.add(1532, 2532, -1);
+//    itv.add(1590, 2590, -1);
+//    itv.add(1665, 2665, -1);
+//    itv.add(1945, 2945, -1);
+//    itv.add(2384, 3384, -1);
+//    itv.add(2515, 3515, -1);
+//    itv.index();
+//    itv.search_overlap(1377, 2377, a);
+//
+//    std::cout << " Found:\n";
+//    for (auto item : a) {
+//        std::cout << item << " - " << itv.intervals[item].start << " " << itv.intervals[item].end << std::endl;
+//    }
+//    return;
+
+
+
+    std::cout << "\n SIntersect \n";
     index = 0;
+    found = 0;
+    t1 = high_resolution_clock::now();
+//    itv = SIntersect<int, int>();
+    itv.add(0, 250000000, -1);
+
+    std::unordered_set<int> mySet;
+
     for (const auto& item : intervals) {
         itv.add(item.start, item.end, index);
         index += 1;
     }
     itv.index();
+    ms_int = duration_cast<microseconds>(high_resolution_clock::now() - t1);
+    std::cout << ms_int.count() << " construct ms" << std::endl;
+
 
     t1 = high_resolution_clock::now();
-    found = 0;
     for (const auto& item : queries) {
         itv.search_overlap(item.start, item.end, a);
         found += a.size();
+//        for (auto & item: a) {
+//            mySet.insert(queries[item].start);
+//        }
     }
+
+//    return;
     ms_int = duration_cast<microseconds>(high_resolution_clock::now() - t1);
     std::cout << ms_int.count() << "ms, " << found << std::endl;
-    std::cout << " COUNTER " << itv.COUNTER << std::endl;
-//    return;
+    std::cout << itv.COUNTER << std::endl;
+
     std::cout << "\n IITree \n";
     IITree<int, int> tree;
     index = 0;
-//    tree.add(0, 250000000, -1);
+    found = 0;
+    t1 = high_resolution_clock::now();
+    tree.add(0, 250000000, -1);
     for (const auto& item : intervals) {
         tree.add(item.start, item.end, index);
         index += 1;
     }
     tree.index();
+    std::cout << ms_int.count() << " construct ms" << std::endl;
 
     t1 = high_resolution_clock::now();
-    found = 0;
     for (const auto& item : queries) {
         tree.overlap(item.start, item.end, b);
         found += b.size();
@@ -148,25 +207,41 @@ void run_tools(std::vector<BedInterval>& intervals, std::vector<BedInterval>& qu
     std::cout << ms_int.count() << "ms, " << found << std::endl;
 
 
-      // first arg is position type
-//    p_iitii::builder br;
-//    index = 0;
-//    for (const auto& item : intervals) {
-//        br.add(item.start, item.end);
-//        index += 1;
-//    }
-//    p_iitii db = br.build(1);
+    std::cout << "\n IntervalTree \n";
+    std::vector<Interval<int, int>> intervals2;
+    index = 0;
+    found = 0;
+    t1 = high_resolution_clock::now();
+    intervals2.push_back(Interval<int, int>(0, 250000000, -1));
+    for (const auto& item : intervals) {
+        intervals2.push_back(Interval<int, int>(item.start, item.end, index));
+        index += 1;
+    }
+    IntervalTree<int, int> tree2(std::move(intervals2));
+    std::cout << ms_int.count() << " construct ms" << std::endl;
 
-//    t1 = high_resolution_clock::now();
-//    found = 0;
-//    for (const auto& item : queries) {
-//        std::vector<const intpair*> results = db.overlap(item.start, item.end);
-//        found += results.size();
-//    }
-//    ms_int = duration_cast<microseconds>(high_resolution_clock::now() - t1);
-//    std::cout << ms_int.count() << "ms, " << found << std::endl;
+    std::vector<Interval<int, int>> results;
+    results.reserve(10000);
+
+    int missing = 0;
+
+    t1 = high_resolution_clock::now();
+    for (const auto& item : queries) {
+        auto result = tree2.findOverlapping(item.start, item.end);
+        results.insert(results.end(), result.begin(), result.end());
+        found += result.size();
+//        if (mySet.find(item.start) == mySet.end()) {
+//            missing += 1;
+//            std::cerr << " missing " << item.start << " " << item.end << std::endl;
+//        }
+
+    }
+
+    ms_int = duration_cast<microseconds>(high_resolution_clock::now() - t1);
+    std::cout << ms_int.count() << "ms, " << found << std::endl;
 
 
+    std::cerr << missing << std::endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -177,7 +252,7 @@ int main(int argc, char *argv[]) {
 //    bool shuffle = true;
 
     std::cout << "\n****** Reads+genes2 ******\n";
-    load_intervals("chr1_ucsc_genes.bed", "chr1_reads.bed", intervals, queries, shuffle);
+    load_intervals("a.bed", "b.bed", intervals, queries, shuffle);
     run_tools(intervals, queries);
 
 //    run_tools(queries, intervals);
