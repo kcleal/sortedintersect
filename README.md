@@ -116,3 +116,5 @@ Limitations
 
 - Reference queries must be added in sorted order
 - Reference intervals can not be deleted
+- Not recommended if you reference set of intervals are a mixture of small and very large intervals. Queries can turn in to linear searches!
+

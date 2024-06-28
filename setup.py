@@ -8,12 +8,11 @@ ext_modules = [
 ]
 
 setup(
-    version='0.4.2',
+    version='0.4.4',
     name='sortedintersect',
     description="Interval intersection for sorted query and target intervals",
     author="Kez Cleal",
     author_email="clealk@cardiff.ac.uk",
     packages=find_packages(),
-    install_requires=['Cython'],  # Ensure runtime dependencies are listed if any
     ext_modules=ext_modules,
 )

@@ -14,3 +14,7 @@
 /tests/run-cpp-libs.dSYM/
 /tests/AIList.o
 /tests/bench.o
+/sortedintersect.egg-info/
+/tests/run_tests
+/tests/siList
+/old/

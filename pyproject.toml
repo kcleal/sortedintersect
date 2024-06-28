@@ -8,6 +8,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sortedintersect"
-version = "0.4.2"
+version = "0.4.4"
 description = "Interval intersection for sorted query and target intervals"
 authors = [{name = "Kez Cleal", email = "clealk@cardiff.ac.uk"}]

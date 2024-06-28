@@ -19,8 +19,14 @@ def make_random_bedtools(shuffle):
     with open("chr1.genome", "w") as f:
         f.write(f"chr1\t250000000")
 
-    subprocess.run("bedtools random -g chr1.genome -l 1000 -seed 1 > a.bed", shell=True)
-    subprocess.run("bedtools random -g chr1.genome -l 1000 -seed 2 > b.bed", shell=True)
+    subprocess.run("bedtools random -g chr1.genome -l 10000 -seed 1 > a0.bed", shell=True)
+    subprocess.run("bedtools random -g chr1.genome -l 10000 -seed 2 > b0.bed", shell=True)
+    subprocess.run("bedtools random -g chr1.genome -l 100 -seed 1 > a2.bed", shell=True)
+    subprocess.run("bedtools random -g chr1.genome -l 100 -seed 2 > b2.bed", shell=True)
+    subprocess.run("cat a0.bed a2.bed > a.bed", shell=True)
+    subprocess.run("cat b0.bed b2.bed > b.bed", shell=True)
+    subprocess.run("rm a0.bed a2.bed b0.bed b2.bed", shell=True)
+
 
     intervals = []
     with open("a.bed", "r") as b:
@@ -155,6 +161,7 @@ for shuffle in (True, False):
     res["test"] = ["random1"] * len(res)
     res["shuffle"] = [shuffle] * len(res)
     dfs.append(res)
+    # break
     print("random2")
     intervals, queries = make_random_bedtools(shuffle)
     df2 = run_tools(intervals, queries, shuffle)
@@ -168,6 +175,7 @@ for shuffle in (True, False):
     # df2["shuffle"] = [shuffle] * len(df2)
     # dfs.append(df2)
     print()
+    break
 
 
 df = pd.concat(dfs)
