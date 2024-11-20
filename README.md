@@ -2,6 +2,9 @@
 sorted-intersect
 ================
 
+Please use superintervals instead, it is faster and better tested:
+
+https://github.com/kcleal/superintervals
 
 Installation
 ------------
